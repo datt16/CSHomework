@@ -1,0 +1,77 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Test.Views.MasterDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    xmlns:model="using:Test.Core.Models"
+    xmlns:views="using:Test.Views"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ItemTemplate"                               >
+            <Grid x:ConnectionId='7' Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon x:ConnectionId='8'
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                                            />
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center">
+                    <TextBlock x:ConnectionId='9'                         Style="{ThemeResource ListTitleStyle}" />
+                    <TextBlock x:ConnectionId='10'                        Style="{StaticResource ListSubTitleStyle}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DetailsTemplate">
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <views:MasterDetailDetailControl MasterMenuItem="{Binding}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NoSelectionContentTemplate">
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    x:Uid="MasterDetail_NoSelection"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    TextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:ConnectionId='11' x:Name="ContentArea">
+        <controls:MasterDetailsView x:ConnectionId='12'
+            x:Name="MasterDetailsViewControl"
+            x:Uid="MasterDetail"
+            BackButtonBehavior="Inline"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+            BorderBrush="Transparent"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+                                              
+            ItemTemplate="{StaticResource ItemTemplate}"
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+                                                          />
+    </Grid>
+</Page>
+

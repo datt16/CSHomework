@@ -1,0 +1,8 @@
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\obj\Debug\netstandard2.0\Test.Core.AssemblyInfoInputs.cache
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\obj\Debug\netstandard2.0\Test.Core.AssemblyInfo.cs
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\bin\Debug\netstandard2.0\Test.Core.deps.json
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\bin\Debug\netstandard2.0\Test.Core.dll
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\bin\Debug\netstandard2.0\Test.Core.pdb
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\obj\Debug\netstandard2.0\Test.Core.csprojAssemblyReference.cache
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\obj\Debug\netstandard2.0\Test.Core.dll
+C:\Users\osato\source\repos\datt16\CSHomework\Test\Test.Core\obj\Debug\netstandard2.0\Test.Core.pdb

@@ -1,0 +1,6 @@
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\bin\Debug\inside.exe.config
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\bin\Debug\inside.exe
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\bin\Debug\inside.pdb
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\obj\Debug\inside.csprojAssemblyReference.cache
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\obj\Debug\inside.exe
+C:\Users\osato\source\repos\datt16\CSHomework\inside\inside\obj\Debug\inside.pdb
