@@ -141,4 +141,8 @@
     <value>Library</value>
     <comment>Navigation view item name for Library</comment>
   </data>
+  <data name="Shell_Inputer.Content" xml:space="preserve">
+    <value>Inputer</value>
+    <comment>Navigation view item name for Inputer</comment>
+  </data>
 </root>
