@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="GoLiveButton" Style="{ThemeResource ButtonRevealStyle}" Grid.Column="0" HorizontalAlignment="Stretch">
+                <Button x:Name="GoLiveButton" Style="{StaticResource ButtonRevealStyle}" Grid.Column="0" HorizontalAlignment="Stretch">
                     <Button.Content>
                         <StackPanel>
                             <Viewbox Margin="80,60,80,30">
@@ -29,7 +29,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button x:Name="GoClassicButton" Style="{ThemeResource ButtonRevealStyle}" Grid.Column="1" HorizontalAlignment="Stretch">
+                <Button x:Name="GoClassicButton" Style="{StaticResource ButtonRevealStyle}" Grid.Column="1" HorizontalAlignment="Stretch">
                     <Button.Content>
                         <StackPanel>
                             <Viewbox Margin="80,60,80,30">

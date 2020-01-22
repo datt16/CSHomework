@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="Recoder.Views.Inputer.SetupPage3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Recoder.Views.Inputer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="560" d:DesignWidth="560"
+    Height="560" Width="560"
+    MinHeight="560" MinWidth="560">
+
+    <RelativePanel x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
+        <StackPanel Orientation="Vertical" Width="560">
+            <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
+            <TextBlock Text="試合に参加する人の情報を入力してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
+            <TextBlock Text="1つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
+            <StackPanel Orientation="Vertical" Margin="15,10,15,15">
+                <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
+                    <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
+                </Grid>
+            </StackPanel>
+            <TextBlock Text="2つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
+            <StackPanel Orientation="Vertical" Margin="15,10,15,15">
+                <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
+                    <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="15,10,15,15" HorizontalAlignment="Right">
+                <Button Content="スキップ" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,10,0"/>
+                <Button Content="完了" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,0,0"/>
+
+            </StackPanel>
+        </StackPanel>
+    </RelativePanel>
+</UserControl>
