@@ -9,6 +9,9 @@
     d:DesignHeight="560" d:DesignWidth="560"
     Height="560" Width="560"
     MinHeight="560" MinWidth="560">
+    <UserControl.Resources>
+        <Storyboard x:Name="Storyboard1"/>
+    </UserControl.Resources>
 
     <RelativePanel x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
         <StackPanel Orientation="Vertical" Width="560">

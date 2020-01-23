@@ -7,10 +7,20 @@
     x:Class="Recoder.Views.InputerPage"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid
-            Background="{ThemeResource SystemControlAcrylicWindowBrush}">
-
-        <Custom:SetupPage1 Height="560" Width="560" VerticalAlignment="Center" HorizontalAlignment="Center" />
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="SetupFrame" Grid.Row="1" Grid.Column="1">
+            <Custom:SetupPage1 Grid.Row="1" Grid.Column="1" Margin="43,44,37,44"/>
+        </Frame>
 
     </Grid>
 </Page>

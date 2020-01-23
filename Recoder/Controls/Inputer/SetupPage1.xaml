@@ -5,11 +5,12 @@
     xmlns:local="using:Recoder.Views.Inputer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:Recoder.Helpers"
     mc:Ignorable="d"
     d:DesignHeight="560" d:DesignWidth="560"
     Height="560" Width="560"
     MinHeight="560" MinWidth="560">
-    <RelativePanel x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
+    <Frame x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
         <StackPanel Orientation="Vertical" Width="560">
             <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
             <TextBlock Text="入力方法を選んでください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
@@ -18,7 +19,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="GoLiveButton" Style="{StaticResource ButtonRevealStyle}" Grid.Column="0" HorizontalAlignment="Stretch">
+                <Button x:Name="GoLiveButton" Style="{StaticResource ButtonRevealStyle}" x:Uid="Setup_1st" Grid.Column="0" HorizontalAlignment="Stretch" Click="GoLiveButton_Click">
                     <Button.Content>
                         <StackPanel>
                             <Viewbox Margin="80,60,80,30">
@@ -42,6 +43,6 @@
                 </Button>
             </Grid>
         </StackPanel>
-    </RelativePanel>
+    </Frame>
     
 </UserControl>

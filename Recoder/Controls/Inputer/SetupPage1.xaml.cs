@@ -20,5 +20,9 @@ namespace Recoder.Views.Inputer {
         public SetupPage1() {
             this.InitializeComponent();
         }
+
+        private void GoLiveButton_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
