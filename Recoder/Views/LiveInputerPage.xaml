@@ -1,0 +1,276 @@
+﻿<Page
+    x:Class="Recoder.Views.LiveInputerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="using:Recoder.Controls"
+    mc:Ignorable="d">
+    <Grid x:Name="Main" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="17*"></RowDefinition>
+                    <RowDefinition Height="7*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="path4757" StrokeThickness="0.8" Stroke="{ThemeResource SystemControlBackgroundBaseMediumHighRevealBorderBrush}" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Data="m 146.45634 105 c 0 0 4.08731 0 4.08731 0 m -4.23564 0 c 0 0 4.38398 0 4.38398 0 M 148.4674 61.89745 c 0 0 0.0652 86.2051 0.0652 86.2051 M 92.944749 105 H 203.95503 M 99.258505 77.85399 c 0 0 98.400375 0 98.400375 0 0 0 12.49319 54.29202 12.49319 54.29202 0 0 -123.304602 0 -123.304602 0 0 0 12.411037 -54.29202 12.411037 -54.29202 m -42.880743 0.001 c 0 0 184.161798 0 184.161798 0 0 0 23.23941 54.28996 23.23941 54.28996 0 0 -230.558464 0 -230.558464 0 0 0 23.157256 -54.28996 23.157256 -54.28996 m -27.27242 63.74509 c 0 0 238.640308 0 238.640308 0 0 0 -31.33434 -73.20021 -31.33434 -73.20021 0 0 -176.082403 0 -176.082403 0 0 0 -31.223565 73.20021 -31.223565 73.20021" UseLayoutRounding="False" Height="429" Stretch="Fill" Width="1334" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1"/>
+                
+
+                <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" x:Name="svg8" HorizontalAlignment="center" VerticalAlignment="center" Grid.Row="1">
+                    <Canvas x:Name="g4765"/>
+                </Canvas>
+                <Grid x:Name="MainGrid" Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="GCnt" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                    </Grid>
+                    <TextBlock x:Name="Cnt" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                    <custom:PlayerCard x:Name="sample" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="0" />
+                    <custom:PlayerCard x:Name="sample1" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" />
+                </Grid>
+                <Grid Grid.Row="3" HorizontalAlignment="Center">
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Margin="5,0,0,5">ファーストサーブ</TextBlock>
+                            <Button x:Name="IsFault"
+                                    Grid.Row="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="Pin"/>
+                                    </Viewbox>
+                                    <TextBlock Text="フォールト" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="IsAce"
+                                    Grid.Row="1" Grid.Column="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="Accept"/>
+                                    </Viewbox>
+                                    <TextBlock Text="サービスエース" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="2" Grid.Column="0"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="AllApps"/>
+                                    </Viewbox>
+                                    <TextBlock Text="その他" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="2" Grid.Column="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <TextBlock Text="スキップ" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="10,0,20,0"/>
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="Forward"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Margin="5,0,0,5">ラリー＆フィニッシュ</TextBlock>
+                            <Grid Grid.Row="1" Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button 
+                                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                    Margin="5,0,0,5"
+                                    Style="{StaticResource ButtonRevealStyle}"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Vertical" Margin="10">
+                                        <Viewbox Height="40">
+                                            <SymbolIcon Symbol="Sort"/>
+                                        </Viewbox>
+                                        <TextBlock Text="ラリー" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="0,20,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                                <!--<Button 
+                                    Grid.Row="0" Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    Style="{StaticResource ButtonRevealStyle}"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <Viewbox Height="30">
+                                            <SymbolIcon Symbol="Add"/>
+                                        </Viewbox>
+                                    </StackPanel>
+                                </Button>
+                                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{StaticResource BackButtonBackgroundThemeBrush}">
+                                    <TextBlock
+                                    Text="0"
+                                    FontSize="30"
+                                    FontWeight="Bold"/>
+                                </StackPanel>
+                                <Button 
+                                    Grid.Row="2" Grid.Column="1"
+                                    Margin="0,0,0,5"
+                                    Style="{StaticResource ButtonRevealStyle}"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <Viewbox Height="30">
+                                            <SymbolIcon Symbol="Remove"/>
+                                        </Viewbox>
+                                    </StackPanel>
+                                </Button>-->
+                            </Grid>
+                            <Button 
+                                Grid.Row="1" Grid.Column="2"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="Cancel"/>
+                                    </Viewbox>
+                                    <TextBlock Text="アウト" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="1" Grid.Column="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="Accept"/>
+                                    </Viewbox>
+                                    <TextBlock Text="エース" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Margin="5,0,0,5">設定・操作</TextBlock>
+                            <Button 
+                                Grid.Row="1" Grid.Column="0"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="ReShare"/>
+                                    </Viewbox>
+                                    <TextBlock Text="" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0">
+                                        サイド＆<LineBreak/>サービス
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="2" Grid.Column="0"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Viewbox Height="40">
+                                        <SymbolIcon Symbol="People"/>
+                                    </Viewbox>
+                                    <TextBlock Text="プレーヤー" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="10,0,10,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="2" Grid.Column="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="20">
+                                    <Viewbox Height="50">
+                                        <SymbolIcon Symbol="Undo"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </Button>
+                            <Button 
+                                Grid.Row="1" Grid.Column="1"
+                                Margin="5,0,0,5"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Margin="20">
+                                    <Viewbox Height="50">
+                                        <SymbolIcon Symbol="More"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

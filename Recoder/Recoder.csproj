@@ -137,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Controls\PlayerCard.xaml.cs">
+      <DependentUpon>PlayerCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
@@ -144,16 +147,16 @@
     <Compile Include="Views\InputerPage.xaml.cs">
       <DependentUpon>InputerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inputer\InputerMasterPage.xaml.cs">
+    <Compile Include="Controls\Inputer\InputerMasterPage.xaml.cs">
       <DependentUpon>InputerMasterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inputer\SetupPage1.xaml.cs">
+    <Compile Include="Controls\Inputer\SetupPage1.xaml.cs">
       <DependentUpon>SetupPage1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inputer\SetupPage2.xaml.cs">
+    <Compile Include="Controls\Inputer\SetupPage2.xaml.cs">
       <DependentUpon>SetupPage2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inputer\SetupPage3.xaml.cs">
+    <Compile Include="Controls\Inputer\SetupPage3.xaml.cs">
       <DependentUpon>SetupPage3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LibraryDetailControl.xaml.cs">
@@ -161,6 +164,9 @@
     </Compile>
     <Compile Include="Views\LibraryPage.xaml.cs">
       <DependentUpon>LibraryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveInputerPage.xaml.cs">
+      <DependentUpon>LiveInputerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainDetailPage.xaml.cs">
       <DependentUpon>MainDetailPage.xaml</DependentUpon>
@@ -179,6 +185,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\tenniscourt_basic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PlayerCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,19 +217,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Inputer\InputerMasterPage.xaml">
+    <Page Include="Controls\Inputer\InputerMasterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Inputer\SetupPage1.xaml">
+    <Page Include="Controls\Inputer\SetupPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Inputer\SetupPage2.xaml">
+    <Page Include="Controls\Inputer\SetupPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Inputer\SetupPage3.xaml">
+    <Page Include="Controls\Inputer\SetupPage3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +238,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LibraryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LiveInputerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

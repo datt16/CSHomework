@@ -145,4 +145,8 @@
     <value>Inputer</value>
     <comment>Navigation view item name for Inputer</comment>
   </data>
+  <data name="Shell_LiveInputer.Content" xml:space="preserve">
+    <value>LiveInputer</value>
+    <comment>Navigation view item name for LiveInputer</comment>
+  </data>
 </root>
