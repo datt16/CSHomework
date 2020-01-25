@@ -51,27 +51,6 @@ namespace Recoder.Core.Services {
                         Age = 16,
                         Pos = "Base"
                     }
-                },
-                Points = new List<Point>()
-                {
-                    new Point()
-                    {
-                        id = 0,
-                        getter = 's',
-                        Tags = new List<Tag>
-                        {
-                            new Tag()
-                            {
-                                TagName = "Fault",
-                                ShortTag = "F"
-                            },
-                            new Tag()
-                            {
-                                TagName = "ServiceAce",
-                                ShortTag = "SA"
-                            }
-                        }
-                    }
                 }
             }
             };
