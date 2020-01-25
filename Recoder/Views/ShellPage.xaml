@@ -29,7 +29,6 @@
             <winui:NavigationViewItem x:Uid="Shell_Main" helpers:NavHelper.NavigateTo="views:MainPage" />
             <winui:NavigationViewItem x:Uid="Shell_Library" helpers:NavHelper.NavigateTo="views:LibraryPage" />
             <winui:NavigationViewItem x:Uid="Shell_Inputer" helpers:NavHelper.NavigateTo="views:InputerPage" />
-            
             <winui:NavigationViewItem x:Uid="Shell_LiveInputer" helpers:NavHelper.NavigateTo="views:LiveInputerPage" />
         </winui:NavigationView.MenuItems>
         <Grid>
