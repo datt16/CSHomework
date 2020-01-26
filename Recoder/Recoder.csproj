@@ -140,7 +140,8 @@
     <Compile Include="Controls\PlayerCard.xaml.cs">
       <DependentUpon>PlayerCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DevMatchControl.cs" />
+    <Compile Include="Helpers\Match.cs" />
+    <Compile Include="Helpers\MatchHelper.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
