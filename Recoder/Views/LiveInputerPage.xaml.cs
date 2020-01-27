@@ -21,6 +21,18 @@ namespace Recoder.Views
         private List<Tag> tags = new List<Tag>();
         private BasicTag baseTag = new BasicTag();
         private int FaultCount = 0;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
 
         public LiveInputerPage()
         {
@@ -78,19 +90,6 @@ namespace Recoder.Views
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private void Submit_to_A_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
@@ -99,6 +98,7 @@ namespace Recoder.Views
             AddPoint("A", tags);
             Record.Hide();
         }
+
         private void Submit_to_B_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             TagCheck();
             helper.Debug_ShowTag(tags);
