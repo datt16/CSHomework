@@ -12,8 +12,8 @@ namespace Recoder.Helpers {
         List<Game> Games = new List<Game>();
         List<Point> Points = new List<Point>();
         Point point = new Point();
-        int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
-        string Server = "";
+        public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
+        public string Server = "A", ReServer = "B";
 
         public void Init_Match() {
             Games = new List<Game>();
@@ -54,18 +54,24 @@ namespace Recoder.Helpers {
             };
             this.GamesCount = data.GamesCount;
             Point_index = 1; Game_Index = 1;
+            Server = "A";
+        }
+
+        public void ChangeServer() {
+            if (Server == "A") { Server = "B"; ReServer = "A"; }
+            else if (Server == "B") { Server = "A"; ReServer = "B"; }
         }
 
         /// <summary>
         /// ポイントを追加、記録
         /// </summary>
-        public void Add_Point(string Team, List<Tag> tag) {
+        public void Add_Point(string Team, List<Tag> tag, int rally = 0) {
             var pt = new Point()
             {
                 Getter = Team,
                 Id = Point_index,
                 Tags = tag,
-
+                Rally = rally
             };
             Points.Add(pt);
             if(Team == "A") PointA++;
@@ -88,11 +94,12 @@ namespace Recoder.Helpers {
         }
 
         public void End_Game() {
+            ChangeServer();
             var gm = new Game()
             {
                 Index = Game_Index,
                 Points = this.Points,
-                Server = this.Server
+                Server = Server
             };
             Games.Add(gm);
             Game_Index++;
