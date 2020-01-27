@@ -6,9 +6,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:custom="using:Recoder.Controls"
     mc:Ignorable="d">
+    
+    
     <Grid x:Name="Main" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <CommandBar Style="{StaticResource CommandBarWithoutRevealStyle}" OverflowButtonVisibility="Collapsed">
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal" x:Name="Commandbar_Content">
+                    <TextBlock FontSize="12" Text="第一ゲーム 第二ポイント" Margin="5,10,10,10"/>
+                </StackPanel>
+            </CommandBar.Content>
+            <AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>
+        </CommandBar>
         <Grid>
-            <Grid Grid.Column="1">
+            <Grid Margin="4,0,-4,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*"></RowDefinition>
                     <RowDefinition Height="17*"></RowDefinition>
@@ -60,91 +70,31 @@
                             <TextBlock Grid.Row="0" Margin="5,0,0,5">ファーストサーブ</TextBlock>
                             <Button x:Name="IsFault"
                                     Grid.Row="2"
-                                Margin="5,0,0,5"
-                                Style="{StaticResource ButtonRevealStyle}"
-                                VerticalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Viewbox Height="40">
-                                        <SymbolIcon Symbol="Pin"/>
-                                    </Viewbox>
-                                    <TextBlock Text="フォールト" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
-                                </StackPanel>
+                                    Margin="5,0,0,5"
+                                    Style="{StaticResource ButtonRevealStyle}"
+                                    VerticalAlignment="Stretch"
+                                    Click="IsFault_Click">
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <Viewbox Height="40">
+                                            <SymbolIcon Symbol="Pin"/>
+                                        </Viewbox>
+                                        <TextBlock x:Name="FaultButton_text" Text="フォールト" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
+                                    </StackPanel>
                             </Button>
-                            <Button x:Name="IsAce"
+                            <Button x:Name="IsServiceAce"
                                     Grid.Row="1" Grid.Column="1"
-                                Margin="5,0,0,5"
-                                Style="{StaticResource ButtonRevealStyle}"
-                                VerticalAlignment="Stretch">
+                                    Margin="5,0,0,5"
+                                    Style="{StaticResource ButtonRevealStyle}"
+                                    VerticalAlignment="Stretch"
+                                    Click="IsAce_Click">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Viewbox Height="40">
                                         <SymbolIcon Symbol="Accept"/>
                                     </Viewbox>
                                     <TextBlock Text="サービスエース" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
                                 </StackPanel>
-                                <Button.Flyout>
-                                    <Flyout>
-                                        <StackPanel HorizontalAlignment="Stretch">
-                                            <TextBlock Text="サービスエースの追加設定" Style="{StaticResource CaptionTextBlockStyle}" Margin="10,0,0,10"/>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Button
-                                                    Grid.Row="0" Grid.Column="0"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="40">
-                                                            <SymbolIcon Symbol="Upload"/>
-                                                        </Viewbox>
-                                                    </StackPanel>
-                                                </Button>
-                                                <Button
-                                                    Grid.Row="1" Grid.Column="0"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="40">
-                                                            <SymbolIcon Symbol="Download"/>
-                                                        </Viewbox>
-                                                    </StackPanel>
-                                                </Button>
-                                                <Button
-                                                    Grid.Row="0" Grid.Column="1"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="40">
-                                                            <SymbolIcon Symbol="Shuffle"/>
-                                                        </Viewbox>
-                                                    </StackPanel>
-                                                </Button>
-                                                <Button
-                                                    Grid.Row="1" Grid.Column="1"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="40">
-                                                            <SymbolIcon Symbol="Previous"/>
-                                                        </Viewbox>
-                                                    </StackPanel>
-                                                </Button>
-
-                                            </Grid>
-                                        </StackPanel>
-                                    </Flyout>
-                                </Button.Flyout>
                             </Button>
-                            <Button 
+                            <Button x:Name="MoreServiceOptions"
                                 Grid.Row="1" Grid.Column="0"
                                 Margin="5,0,0,5"
                                 Style="{StaticResource ButtonRevealStyle}"
@@ -157,7 +107,7 @@
                                     <TextBlock Text="その他" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
                                 </StackPanel>
                                 <Button.Flyout>
-                                    <Flyout>
+                                    <Flyout x:Name="AddAnything_Flyout">
                                         <StackPanel HorizontalAlignment="Stretch">
                                             <TextBlock Text="その他の項目を設定" Style="{StaticResource CaptionTextBlockStyle}" Margin="10,0,0,10"/>
                                             <Grid>
@@ -169,11 +119,12 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Button
+                                                <Button x:Name="IsFFault"
                                                     Grid.Row="0" Grid.Column="0"
                                                     Margin="5,0,0,5"
                                                     Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">    
+                                                    VerticalAlignment="Stretch"
+                                                    Click="IsFFault_Click">    
                                                     <StackPanel Orientation="Horizontal" Margin="10">
                                                         <Viewbox Height="40">
                                                             <SymbolIcon Symbol="Placeholder"/>
@@ -181,11 +132,12 @@
                                                         <TextBlock Text="フットフォールト" VerticalAlignment="Center" FontSize="20" Margin="20,0,10,0"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button
+                                                <Button x:Name="IsServiceNet"
                                                     Grid.Row="0" Grid.Column="1"
                                                     Margin="5,0,0,5"
                                                     Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                    VerticalAlignment="Stretch"
+                                                    Click="IsServiceNet_Click">
                                                     <StackPanel Orientation="Horizontal" Margin="10">
                                                         <Viewbox Height="40">
                                                             <SymbolIcon Symbol="Keyboard"/>
@@ -203,7 +155,8 @@
                                 Margin="5,0,0,5"
                                 Style="{StaticResource ButtonRevealStyle}"
                                 VerticalAlignment="Stretch"
-                                HorizontalAlignment="Stretch">
+                                HorizontalAlignment="Stretch"
+                                IsEnabled="false">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <TextBlock Text="スキップ" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="10,0,20,0"/>
                                     <Viewbox Height="40">
@@ -223,118 +176,6 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Margin="35,0,0,5">ラリー＆フィニッシュ</TextBlock>
-                            <!--<Button 
-                                    Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
-                                    Margin="5,0,0,5"
-                                    Style="{StaticResource ButtonRevealStyle}"
-                                    VerticalAlignment="Stretch"
-                                    HorizontalAlignment="Stretch">
-                                    <StackPanel Orientation="Vertical" Margin="10">
-                                        <Viewbox Height="40">
-                                            <SymbolIcon Symbol="Sort"/>
-                                        </Viewbox>
-                                        <TextBlock Text="ラリー" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="0,20,0,0"/>
-                                    </StackPanel>
-                                    <Button.Flyout>
-                                        <Flyout>
-                                            <StackPanel HorizontalAlignment="Stretch">
-                                                <TextBlock Text="ラリー" Style="{StaticResource CaptionTextBlockStyle}" Margin="10,0,0,10"/>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="*"/>
-                                                    </Grid.RowDefinitions>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <Button 
-                                                            Grid.Row="0" Grid.Column="0"
-                                                            Margin="0,0,0,0"
-                                                            Style="{StaticResource ButtonRevealStyle}"
-                                                            VerticalAlignment="Stretch"
-                                                            HorizontalAlignment="Stretch">
-                                                            <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <Viewbox Height="30">
-                                                                    <SymbolIcon Symbol="Add"/>
-                                                                </Viewbox>
-                                                            </StackPanel>
-                                                        </Button>
-                                                        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{StaticResource BackButtonBackgroundThemeBrush}" Margin="20,0,20,0">
-                                                            <TextBlock
-                                                                Text="0"
-                                                                FontSize="30"
-                                                                FontWeight="Bold"/>
-                                                        </StackPanel>
-
-                                                        <Button 
-                                                        Grid.Row="2" Grid.Column="1"
-                                                        Margin="0,0,0,0"
-                                                        Style="{StaticResource ButtonRevealStyle}"
-                                                        VerticalAlignment="Stretch"
-                                                        HorizontalAlignment="Stretch">
-                                                            <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <Viewbox Height="30">
-                                                                    <SymbolIcon Symbol="Remove"/>
-                                                                </Viewbox>
-                                                            </StackPanel>
-                                                        </Button>
-                                                    </StackPanel>
-                                                </Grid>
-                                                <TextBlock Text="その他の設定" Style="{StaticResource CaptionTextBlockStyle}" Margin="10,5,0,10"/>
-                                                <Button 
-                                                    Grid.Row="0" Grid.Column="0"
-                                                    Margin="0,0,0,0"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch"
-                                                    HorizontalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="20">
-                                                            <SymbolIcon Symbol="Accept"/>
-                                                        </Viewbox>
-                                                        <TextBlock Text="2バウンズ" Margin="30,0,10,0"/>
-                                                    </StackPanel>
-                                                </Button>
-                                                <Button 
-                                                    Grid.Row="0" Grid.Column="0"
-                                                    Margin="0,0,0,0"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch"
-                                                    HorizontalAlignment="Stretch">
-                                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                                        <Viewbox Height="20">
-                                                            <SymbolIcon Symbol="Accept"/>
-                                                        </Viewbox>
-                                                        <TextBlock Text="適用" Margin="30,0,10,0"/>
-                                                    </StackPanel>
-                                                </Button>
-                                            </StackPanel>
-                                        </Flyout>
-                                    </Button.Flyout>
-                                </Button>
-                            <Button 
-                                Grid.Row="1" Grid.Column="2"
-                                Margin="5,0,0,5"
-                                Style="{StaticResource ButtonRevealStyle}"
-                                VerticalAlignment="Stretch"
-                                HorizontalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Viewbox Height="40">
-                                        <SymbolIcon Symbol="Cancel"/>
-                                    </Viewbox>
-                                    <TextBlock Text="アウト" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button 
-                                Grid.Row="1" Grid.Column="1"
-                                Margin="5,0,0,5"
-                                Style="{StaticResource ButtonRevealStyle}"
-                                VerticalAlignment="Stretch"
-                                HorizontalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Viewbox Height="40">
-                                        <SymbolIcon Symbol="Accept"/>
-                                    </Viewbox>
-                                    <TextBlock Text="エース" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0"/>
-                                </StackPanel>
-                            </Button>-->
                             <Grid Grid.Row="1" Margin="30,0,30,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -387,7 +228,7 @@
                                         <TextBlock Text="記録" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,20,0"/>
                                     </StackPanel>
                                     <Button.Flyout>
-                                        <Flyout>
+                                        <Flyout x:Name="Record">
                                             <StackPanel HorizontalAlignment="Stretch">
                                                 <TextBlock Text="得失点の手段" Style="{StaticResource CaptionTextBlockStyle}" Margin="10,0,0,10"/>
                                                 <Grid>
@@ -400,10 +241,12 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <ToggleButton
-                                                    Grid.Row="0" Grid.Column="0"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ToggleButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="IsOut"
+                                                        Grid.Row="0" Grid.Column="0"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ToggleButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <Viewbox Height="20">
                                                                 <SymbolIcon Symbol="Placeholder"/>
@@ -412,10 +255,12 @@
                                                         </StackPanel>
                                                     </ToggleButton>
                                                     <ToggleButton
-                                                    Grid.Row="0" Grid.Column="1"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ToggleButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="IsAce"
+                                                        Grid.Row="0" Grid.Column="1"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ToggleButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <Viewbox Height="20">
                                                                 <SymbolIcon Symbol="Placeholder"/>
@@ -424,19 +269,22 @@
                                                         </StackPanel>
                                                     </ToggleButton>
                                                     <ToggleButton
-                                                    Grid.Row="1" Grid.Column="0"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ToggleButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="IsTwoBounds"
+                                                        Grid.Row="1" Grid.Column="0"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ToggleButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <TextBlock Text="2バウンド" VerticalAlignment="Center" FontSize="20" Margin="5,0,5,0"/>
                                                         </StackPanel>
                                                     </ToggleButton>
                                                     <ToggleButton
-                                                    Grid.Row="1" Grid.Column="1"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ToggleButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="IsNet_on_Rally"
+                                                        Grid.Row="1" Grid.Column="1"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ToggleButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <Viewbox Height="20">
                                                                 <SymbolIcon Symbol="Keyboard"/>
@@ -452,19 +300,25 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Button
-                                                    Grid.Row="0" Grid.Column="0"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="Submit_to_A"
+                                                        Grid.Row="0" Grid.Column="0"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch"
+                                                        Click="Submit_to_A_Click">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <TextBlock Text="A" VerticalAlignment="Center" FontSize="32" Margin="10,0,5,0"/>
                                                         </StackPanel>
                                                     </Button>
                                                     <Button
-                                                    Grid.Row="0" Grid.Column="1"
-                                                    Margin="5,0,0,5"
-                                                    Style="{StaticResource ButtonRevealStyle}"
-                                                    VerticalAlignment="Stretch">
+                                                        x:Name="Submit_to_B"
+                                                        Grid.Row="0" Grid.Column="1"
+                                                        Margin="5,0,0,5"
+                                                        Style="{StaticResource ButtonRevealStyle}"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch"
+                                                        Click="Submit_to_B_Click">
                                                         <StackPanel Orientation="Horizontal" Margin="10">
                                                             <TextBlock Text="B" VerticalAlignment="Center" FontSize="32" Margin="10,0,5,0"/>
                                                         </StackPanel>
