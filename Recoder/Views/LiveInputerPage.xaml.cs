@@ -49,6 +49,7 @@ namespace Recoder.Views
             GCnt.Text = helper.GenerateCountText(0, 0);
             RallyCountText.Text = "0";
             RallyCountDown.IsEnabled = false;
+            Undo_Button.IsEnabled = false;
         }
 
         private void Init_Before_Serve() {
@@ -61,7 +62,10 @@ namespace Recoder.Views
         }
 
         private void AddPoint(string team, List<Tag> tags) {
-            match.Add_Point(team, tags, RallyCount);
+            Undo_Button.IsEnabled = true;
+            if (match.Add_Point(team, tags, RallyCount) == "EndGame") {
+                Undo_Button.IsEnabled = false;
+            }
             Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
             GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB);
             Init_Before_Serve();
@@ -179,6 +183,13 @@ namespace Recoder.Views
             if (RallyCount == 0) {
                 RallyCountDown.IsEnabled = false;
             }
+        }
+
+        private void Undo_Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
+            match.Undo();
+            Init_Before_Serve();
+            Undo_Button.IsEnabled = false;
+            Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
         }
 
         private void RallyCountUp_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {

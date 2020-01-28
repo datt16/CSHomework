@@ -374,12 +374,14 @@
                                     <TextBlock Text="プレーヤー" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="10,0,10,0"/>
                                 </StackPanel>
                             </Button>
-                            <Button 
+                            <Button
+                                Name="Undo_Button"
                                 Grid.Row="2" Grid.Column="1"
                                 Margin="5,0,0,5"
                                 Style="{StaticResource ButtonRevealStyle}"
                                 VerticalAlignment="Stretch"
-                                HorizontalAlignment="Stretch">
+                                HorizontalAlignment="Stretch"
+                                Click="Undo_Button_Click">
                                 <StackPanel Orientation="Horizontal" Margin="20">
                                     <Viewbox Height="50">
                                         <SymbolIcon Symbol="Undo"/>

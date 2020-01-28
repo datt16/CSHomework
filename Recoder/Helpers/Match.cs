@@ -117,9 +117,10 @@ namespace Recoder.Helpers {
         }
 
         public void Undo() {
-            if (Points[Points.Count - 1].Getter == "A") PointA--;
-            else if (Points[Points.Count - 1].Getter == "A") PointB--;
-            Points.RemoveAt(Points.Count - 1);
+            if (Points.Last().Getter == "A") PointA--;
+            else if (Points.Last().Getter == "B") PointB--;
+            else Debug.WriteLine("Error: Undo");
+            Points.RemoveAt(Points.Count() - 1);
             Point_index--;
         }
 
