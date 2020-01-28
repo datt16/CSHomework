@@ -20,7 +20,7 @@ namespace Recoder.Views
         private MatchHelper helper = new MatchHelper();
         private List<Tag> tags = new List<Tag>();
         private BasicTag baseTag = new BasicTag();
-        private int FaultCount = 0;
+        private int FaultCount = 0, RallyCount = 0;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
@@ -41,18 +41,30 @@ namespace Recoder.Views
             BasicTag baseTag = new BasicTag();
             match.Setup_Tester();
             match.Init_Match();
+            InitAllComponents();
         }
 
-        private void Init_Serve() {
+        private void InitAllComponents() {
+            Cnt.Text = helper.GenerateCountText(0, 0);
+            GCnt.Text = helper.GenerateCountText(0, 0);
+            RallyCountText.Text = "0";
+            RallyCountDown.IsEnabled = false;
+        }
+
+        private void Init_Before_Serve() {
             tags.Clear();
             FaultCount = 0;
+            RallyCount = 0;
             FaultButton_text.Text = "フォールト";
+            RallyCountText.Text = "0";
+            RallyCountDown.IsEnabled = false;
         }
 
-        private void AddPoint(string team, List<Tag> tags, int rally = 0) {
-            match.Add_Point(team, tags, rally);
+        private void AddPoint(string team, List<Tag> tags) {
+            match.Add_Point(team, tags, RallyCount);
             Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
-            Init_Serve();
+            GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB);
+            Init_Before_Serve();
         }
 
         private void Fault(bool AddTag = true) {
@@ -118,7 +130,7 @@ namespace Recoder.Views
             }
             else if (FaultCount == 1) {
                 Fault();
-                Init_Serve();
+                Init_Before_Serve();
             }
         }
 
@@ -159,6 +171,22 @@ namespace Recoder.Views
             IsOut.IsChecked = false;
             IsTwoBounds.IsChecked = false;
             IsNet_on_Rally.IsChecked = false;
+        }
+
+        private void RallyCountDown_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
+            RallyCount--;
+            RallyCountText.Text = RallyCount.ToString();
+            if (RallyCount == 0) {
+                RallyCountDown.IsEnabled = false;
+            }
+        }
+
+        private void RallyCountUp_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
+            RallyCount++;
+            RallyCountText.Text = RallyCount.ToString();
+            if (RallyCount > 0) {
+                RallyCountDown.IsEnabled = true;
+            }
         }
     }
 }

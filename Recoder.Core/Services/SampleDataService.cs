@@ -8,7 +8,6 @@ using Recoder.Core.Models;
 namespace Recoder.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
-    // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService
     {
         private static IEnumerable<SampleOrder> _allOrders;
@@ -483,14 +482,12 @@ namespace Recoder.Core.Services
             };
         }
 
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         public static async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
         {
             await Task.CompletedTask;
             return AllOrders();
         }
 
-        // TODO WTS: Remove this once your ContentGrid page is displaying real data.
         public static async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
         {
             if (_allOrders == null)

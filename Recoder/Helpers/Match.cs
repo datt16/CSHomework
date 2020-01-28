@@ -65,7 +65,7 @@ namespace Recoder.Helpers {
         /// <summary>
         /// ポイントを追加、記録
         /// </summary>
-        public void Add_Point(string Team, List<Tag> tag, int rally = 0) {
+        public String Add_Point(string Team, List<Tag> tag, int rally = 0) {
             var pt = new Point()
             {
                 Getter = Team,
@@ -83,24 +83,25 @@ namespace Recoder.Helpers {
             if (Point_index > 6) {
                 if (PointA > PointB + 1 || PointB > PointA + 1) {
                     End_Game();
-                    //return (true, 'f');
+                    return "EndGame";
                 }
             }
             else if (PointA == 4 || PointB == 4) {
                 End_Game();
-                // return (true, 'f');
+                return "EndGame";
             }
             Point_index++;
+            return "";
         }
 
         public void End_Game() {
-            ChangeServer();
             var gm = new Game()
             {
                 Index = Game_Index,
                 Points = this.Points,
                 Server = Server
             };
+            ChangeServer();
             Games.Add(gm);
             Game_Index++;
             if (PointA > PointB) GCountA++;
@@ -130,13 +131,7 @@ namespace Recoder.Helpers {
             return res.ToString();
         }
 
-        public void MakeMatchFromInput(
-            string teamNameA,
-            string teamNameB,
-            List<Player> playersA,
-            List<Player> playersB,
-            int gamesCount
-            ) {
+        public void MakeMatchFromInput(string teamNameA, string teamNameB, List<Player> playersA, List<Player> playersB, int gamesCount) {
             data = new MatchData()
             {
                 TeamAName = teamNameA,
