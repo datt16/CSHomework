@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:custom="using:Recoder.Controls"
+    xmlns:c="using:Recoder.Controls"
+    xmlns:c_result="using:Recoder.Controls.Result"
     mc:Ignorable="d">
     
     
@@ -18,7 +19,15 @@
             <AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>
         </CommandBar>
         <Grid>
-            <Grid Margin="4,0,-4,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource AppBarExpandButtonThemeWidthGridLength}"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <c_result:ResultRoot Margin="10,15"></c_result:ResultRoot>
+            </Grid>
+            <Grid Margin="4,0,-4,0" Grid.RowSpan="100">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*"></RowDefinition>
                     <RowDefinition Height="17*"></RowDefinition>
@@ -51,10 +60,10 @@
                         <TextBlock x:Name="GCnt" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
                     </Grid>
                     <TextBlock x:Name="Cnt" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                    <custom:PlayerCard x:Name="sample" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="0" />
-                    <custom:PlayerCard x:Name="sample1" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" />
+                    <c:PlayerCard x:Name="sample" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="0" />
+                    <c:PlayerCard x:Name="sample1" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" />
                 </Grid>
-                <Grid Grid.Row="3" HorizontalAlignment="Center">
+                <Grid Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,15">
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -194,7 +203,7 @@
                                     HorizontalAlignment="Stretch"
                                     Click="RallyCountUp_Click">
                                     <StackPanel Orientation="Horizontal" Margin="10">
-                                        <Viewbox Height="40">
+                                        <Viewbox Height="20">
                                             <SymbolIcon Symbol="Add"/>
                                         </Viewbox>
                                     </StackPanel>
@@ -214,7 +223,7 @@
                                     HorizontalAlignment="Stretch"
                                     Click="RallyCountDown_Click">
                                     <StackPanel Orientation="Horizontal" Margin="10">
-                                        <Viewbox Height="40">
+                                        <Viewbox Height="20">
                                             <SymbolIcon Symbol="Remove"/>
                                         </Viewbox>
                                     </StackPanel>
@@ -356,10 +365,17 @@
                                     <Viewbox Height="40">
                                         <SymbolIcon Symbol="ReShare"/>
                                     </Viewbox>
-                                    <TextBlock Text="" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="20,0,10,0">
-                                        サイド＆<LineBreak/>サービス
+                                    <TextBlock Text="" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" Margin="20,0,10,0">
+                                        得点
                                     </TextBlock>
                                 </StackPanel>
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <StackPanel Orientation="Vertical">
+                                            <Button Style="{StaticResource ButtonRevealStyle}" Content="得点ビューを表示"/>
+                                        </StackPanel>
+                                    </Flyout>
+                                </Button.Flyout>
                             </Button>
                             <Button 
                                 Grid.Row="2" Grid.Column="0"
