@@ -8,46 +8,57 @@ namespace Recoder.Core.Services {
         public Tag Fault = new Tag()
         {
             ShortTag = "F",
+            DisplayName = "F",
+            Description = "読み方:フォールト\nサーブに失敗するとフォールトになります。",
             TagName = "Fault"
         };
         public Tag WFault = new Tag()
         {
             ShortTag = "WF",
+            DisplayName = "WF",
+            Description = "読み方:ダブルフォールト\nサーブに2回失敗するとダブルフォールトになります。\nレシーブ側に1点追加されます",
             TagName = "WFault"
         };
         public Tag Ace = new Tag()
         {
             ShortTag = "A",
+            DisplayName = "Ace",
             TagName = "Ace"
         };
         public Tag ServiceAce = new Tag()
         {
             ShortTag = "SA",
-            TagName = "Ace"
+            DisplayName = "SAce",
+            TagName = "ServiceAce"
         };
         public Tag FootFault = new Tag()
         {
             ShortTag = "FF",
+            DisplayName = "FF",
             TagName = "FootFault"
         };
         public Tag ServiceNet = new Tag()
         {
             ShortTag = "SN",
+            DisplayName = "NF",
             TagName = "ServiceNet"
         };
         public Tag Net = new Tag()
         {
             ShortTag = "N",
+            DisplayName = "N",
             TagName = "Net"
         };
         public Tag Out = new Tag()
         {
             ShortTag = "O",
+            DisplayName = "Out",
             TagName = "Out"
         };
         public Tag TwoBounds = new Tag()
         {
             ShortTag = "2B",
+            DisplayName = "2B",
             TagName = "TwoBounds"
         };
     }
