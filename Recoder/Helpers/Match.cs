@@ -7,13 +7,14 @@ using Recoder.Core.Models;
 using System.Diagnostics;
 
 namespace Recoder.Helpers {
-    class Match {
-        MatchData data = new MatchData();
+    public class Match {
+        public MatchData data = new MatchData();
         List<Game> Games = new List<Game>();
         List<Point> Points = new List<Point>();
         Point point = new Point();
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
         public string Server = "A", ReServer = "B";
+        public Game GameCache = null;
 
         public void Init_Match() {
             Games = new List<Game>();
@@ -120,6 +121,13 @@ namespace Recoder.Helpers {
             if (Points.Last().Getter == "A") PointA--;
             else if (Points.Last().Getter == "B") PointB--;
             else Debug.WriteLine("Error: Undo");
+            // ゲームを仮生成
+            GameCache = new Game()
+            {
+                Index = Game_Index,
+                Points = this.Points,
+                Server = Server
+            };
             Points.RemoveAt(Points.Count() - 1);
             Point_index--;
         }

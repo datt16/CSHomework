@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 
 using Windows.UI.Xaml.Controls;
+using Recoder.Controls.Result;
 using Recoder.Core.Services;
 using Recoder.Core.Models;
 using Recoder.Helpers;
@@ -45,11 +46,14 @@ namespace Recoder.Views
         }
 
         private void InitAllComponents() {
+            PointControl PtControl = new PointControl();
             Cnt.Text = helper.GenerateCountText(0, 0);
             GCnt.Text = helper.GenerateCountText(0, 0);
             RallyCountText.Text = "0";
             RallyCountDown.IsEnabled = false;
             Undo_Button.IsEnabled = false;
+            CountResult.InitRoot(match.data.TeamAName, match.data.TeamBName);
+            CountResult.ClearAll();
         }
 
         private void Init_Before_Serve() {
@@ -66,6 +70,10 @@ namespace Recoder.Views
             if (match.Add_Point(team, tags, RallyCount) == "EndGame") {
                 Undo_Button.IsEnabled = false;
             }
+            int cnt = 0;
+            if (team == "A") cnt = match.PointA;
+            else if (team == "B") cnt = match.PointB;
+            CountResult.AddCount(new Point() { Getter = team, Tags = tags }, cnt);
             Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
             GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB);
             Init_Before_Serve();
@@ -187,6 +195,8 @@ namespace Recoder.Views
 
         private void Undo_Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             match.Undo();
+            CountResult.ClearAll();
+            CountResult.SetCount(match.GameCache);
             Init_Before_Serve();
             Undo_Button.IsEnabled = false;
             Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
