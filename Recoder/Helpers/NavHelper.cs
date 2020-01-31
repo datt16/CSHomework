@@ -27,5 +27,6 @@ namespace Recoder.Helpers
 
         public static readonly DependencyProperty NavigateToProperty =
             DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
+
     }
 }

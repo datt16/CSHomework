@@ -20,7 +20,7 @@
                 <TextBlock Text="試合の形式を指定してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
                 <TextBlock Text="基本設定" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="15,10,15,15">
-                    <ComboBox x:Name="MaxGameCount" ItemsSource="3,5,7"/>
+                    <ComboBox x:Name="MaxGameCount" ItemsSource="3 5 7"/>
                     <TextBlock Text="ゲームマッチ" VerticalAlignment="Bottom" Margin="10,0,0,7.5"/>
                     <CheckBox Content="団体戦" IsEnabled="False" Margin="20,0,0,0"></CheckBox>
                 </StackPanel>
@@ -32,7 +32,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15,0,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Content="次へ" Style="{StaticResource ButtonRevealStyle}"/>
+                <Button x:Name="GoNextWindowButton" Content="次へ" Style="{StaticResource ButtonRevealStyle}" Click="GoNextWindowButton_Click"/>
             </StackPanel>
         </Grid>
     </Page>

@@ -10,22 +10,20 @@
     <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Pivot x:Name="rootPivot" Grid.Row="1" Grid.Column="1">
             <PivotItem Header="">
-                <Grid>
-                    <Custom:SetupPage1 VerticalAlignment="Top" Height="Auto"/>
-                </Grid>
+                <Custom:SetupPage1 VerticalAlignment="Top" Height="Auto"/>
             </PivotItem>
             <PivotItem Header="">
-                <Grid>
+                <Grid Margin="4,0,-4,0">
                     <Custom:SetupPage2 VerticalAlignment="Top"/>
                 </Grid>
             </PivotItem>
@@ -33,8 +31,7 @@
                 <Custom:SetupPage3 VerticalAlignment="Top"/>
             </PivotItem>
         </Pivot>
-
-
+        <!--<Frame x:Name="SetupFrame" Grid.Row="1" Grid.Column="1"/>-->
 
     </Grid>
 </Page>

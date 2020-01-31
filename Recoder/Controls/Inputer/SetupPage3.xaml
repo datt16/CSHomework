@@ -48,8 +48,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15,10,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Content="スキップ" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,10,0"/>
-                <Button Content="完了" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,0,0"/>
+                <Button x:Name="InputSlipButton" Content="スキップ" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,10,0"/>
+                <Button x:Name="InputSubmitButton" Click="InputSubmitButton_Click" Content="完了" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,0,0"/>
             </StackPanel>
         </Grid>
     </Page>

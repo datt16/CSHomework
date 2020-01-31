@@ -20,5 +20,12 @@ namespace Recoder.Views.Inputer {
         public SetupPage2() {
             this.InitializeComponent();
         }
+
+        private void GoNextWindowButton_Click(object sender, RoutedEventArgs e) {
+            var parentGrid = Parent as Grid;
+            var PvItem = parentGrid.Parent as PivotItem;
+            var RootPivotWindow = PvItem.Parent as Pivot;
+            RootPivotWindow.SelectedIndex += 1;
+        }
     }
 }

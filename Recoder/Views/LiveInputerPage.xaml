@@ -18,7 +18,7 @@
             </CommandBar.Content>
             <AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>
         </CommandBar>
-        <Grid>
+        <Grid Margin="21,0,-21,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource AppBarExpandButtonThemeWidthGridLength}"/>
                 <RowDefinition Height="200"/>

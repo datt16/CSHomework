@@ -10,7 +10,7 @@
     d:DesignHeight="560" d:DesignWidth="560"
     Height="Auto" Width="560">
     
-    <Page Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+    <Page Name="RootPage" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <Grid x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

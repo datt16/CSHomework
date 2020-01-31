@@ -12,19 +12,20 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Recoder.Helpers;
 
-// ユーザー コントロールの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+// 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
-namespace Recoder.Views.Inputer {
-    public sealed partial class SetupPage1 : UserControl {
-        public SetupPage1() {
+namespace Recoder.Views.SetupPage {
+    /// <summary>
+    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
+    /// </summary>
+    public sealed partial class SetupRoot : Page {
+        public SetupRoot() {
             this.InitializeComponent();
         }
+
         private void GoLiveButton_Click(object sender, RoutedEventArgs e) {
-            var PvItem = Parent as PivotItem;
-            var RootPivotWindow = PvItem.Parent as Pivot;
-            RootPivotWindow.SelectedIndex += 1;
+            Services.NavigationService.Navigate<LiveInputerPage>();
         }
     }
 }
