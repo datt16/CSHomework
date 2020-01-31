@@ -7,6 +7,8 @@ namespace Recoder.Core.Models {
 
         public int Id { get; set; }
 
+        public bool IsSpecial { get; set; } = false;
+
         public string Getter { get; set; }
 
         public int Rally { get; set; } = 0;

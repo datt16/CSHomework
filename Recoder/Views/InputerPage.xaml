@@ -15,12 +15,26 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Frame x:Name="SetupFrame" Grid.Row="1" Grid.Column="1">
-            <Custom:SetupPage1 Grid.Row="1" Grid.Column="1" Margin="43,44,37,44"/>
-        </Frame>
+        <Pivot x:Name="rootPivot" Grid.Row="1" Grid.Column="1">
+            <PivotItem Header="">
+                <Grid>
+                    <Custom:SetupPage1 VerticalAlignment="Top" Height="Auto"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="">
+                <Grid>
+                    <Custom:SetupPage2 VerticalAlignment="Top"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="">
+                <Custom:SetupPage3 VerticalAlignment="Top"/>
+            </PivotItem>
+        </Pivot>
+
+
 
     </Grid>
 </Page>

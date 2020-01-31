@@ -13,39 +13,45 @@
         <Storyboard x:Name="Storyboard1"/>
     </UserControl.Resources>
 
-    <RelativePanel x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
-        <StackPanel Orientation="Vertical" Width="560">
-            <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
-            <TextBlock Text="試合に参加する人の情報を入力してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
-            <TextBlock Text="1つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
-            <StackPanel Orientation="Vertical" Margin="15,10,15,15">
-                <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
-                    <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
-                </Grid>
+    <Page Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
+        <Grid x:Name="Panel"  HorizontalAlignment="Center" Width="560" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Width="560">
+                <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
+                <TextBlock Text="試合に参加する人の情報を入力してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
+                <TextBlock Text="1つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
+                <StackPanel Orientation="Vertical" Margin="15,10,15,15">
+                    <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
+                        <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </StackPanel>
+                <TextBlock Text="2つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
+                <StackPanel Orientation="Vertical" Margin="15,10,15,15">
+                    <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
+                        <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
-            <TextBlock Text="2つ目のチーム" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
-            <StackPanel Orientation="Vertical" Margin="15,10,15,15">
-                <TextBox Header="チーム名" PlaceholderText="学校名、チーム名など" />
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" PlaceholderText="後衛の名前" Header="プレーヤー" Margin="0,0,5,0"/>
-                    <TextBox Grid.Column="1" PlaceholderText="前衛の名前" VerticalAlignment="Bottom"/>
-                </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="15,10,15,15" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15,10,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button Content="スキップ" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,10,0"/>
                 <Button Content="完了" Style="{StaticResource ButtonRevealStyle}" Margin="0,0,0,0"/>
-
             </StackPanel>
-        </StackPanel>
-    </RelativePanel>
+        </Grid>
+    </Page>
+
 </UserControl>

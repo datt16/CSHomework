@@ -98,6 +98,13 @@ namespace Recoder.Controls.Result {
                 Thickness mg = new Thickness(5, 0, 5, 0);
                 chip.Margin = mg;
                 set.Children.Add(chip);
+                if (Pt.IsSpecial) {
+                    var pts = new PointChipSeparator
+                    {
+                        Margin = mg
+                    };
+                    set.Children.Add(pts);
+                }
             }
             return (a, b);
         }
@@ -115,6 +122,13 @@ namespace Recoder.Controls.Result {
             Thickness mg = new Thickness(5, 0, 5, 0);
             chip.Margin = mg;
             set.Children.Add(chip);
+            if (point.IsSpecial) {
+                var pts = new PointChipSeparator
+                {
+                    Margin = mg
+                };
+                set.Children.Add(pts);
+            }
         }
     }
 
@@ -127,7 +141,11 @@ namespace Recoder.Controls.Result {
                     Getter = data.Getter,
                     Howto = Tag_to_String(data.Tags)
                 };
+                if (data.IsSpecial) {
+                    set.IsSpecial = true;
+                }
                 sets.Add(set);
+                Debug.WriteLine($"Tag:{set.Howto}, {set.IsSpecial}");
             }
             return sets;
         }
@@ -144,6 +162,8 @@ namespace Recoder.Controls.Result {
         public string Getter { get; set; }
 
         public string Howto { get; set; }
+
+        public bool IsSpecial { get; set; } = false;
     }
 
 }

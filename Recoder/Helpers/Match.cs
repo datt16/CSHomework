@@ -122,14 +122,14 @@ namespace Recoder.Helpers {
             else if (Points.Last().Getter == "B") PointB--;
             else Debug.WriteLine("Error: Undo");
             // ゲームを仮生成
+            Points.RemoveAt(Points.Count() - 1);
+            Point_index--;
             GameCache = new Game()
             {
                 Index = Game_Index,
-                Points = this.Points,
+                Points = Points,
                 Server = Server
             };
-            Points.RemoveAt(Points.Count() - 1);
-            Point_index--;
         }
 
         private string GenDebugLog(string method, string Text) {

@@ -9,26 +9,32 @@
     d:DesignHeight="560" d:DesignWidth="560"
     Height="560" Width="560"
     MinHeight="560" MinWidth="560">
-
-    <RelativePanel x:Name="Panel"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
-        <StackPanel Orientation="Vertical" Width="560">
-            <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
-            <TextBlock Text="試合の形式を指定してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
-            <TextBlock Text="基本設定" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="15,10,15,15">
-                <ComboBox x:Name="MaxGameCount" ItemsSource="3,5,7"/>
-                <TextBlock Text="ゲームマッチ" VerticalAlignment="Bottom" Margin="10,0,0,7.5"/>
-                <CheckBox Content="団体戦" IsEnabled="False" Margin="20,0,0,0"></CheckBox>
+    <Page Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
+        <Grid x:Name="Panel"  HorizontalAlignment="Center"  Width="560" Height="Auto" Background="{ThemeResource SystemControlPageBackgroundAltHighBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Width="560" Grid.Row="0">
+                <TextBlock Text="試合のセットアップ" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="15,15,0,0"/>
+                <TextBlock Text="試合の形式を指定してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
+                <TextBlock Text="基本設定" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="15,10,15,15">
+                    <ComboBox x:Name="MaxGameCount" ItemsSource="3,5,7"/>
+                    <TextBlock Text="ゲームマッチ" VerticalAlignment="Bottom" Margin="10,0,0,7.5"/>
+                    <CheckBox Content="団体戦" IsEnabled="False" Margin="20,0,0,0"></CheckBox>
+                </StackPanel>
+                <TextBlock Text="その他の設定" Style="{StaticResource BodyTextStyle}" Margin="15,0,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="15,0,15,15" >
+                    <CheckBox Content="シングルス" Margin="5,0,0,0" IsEnabled="False"/>
+                    <CheckBox Content="ファイナルなし" Margin="5,0,0,0" IsEnabled="False"/>
+                    <CheckBox Content="デュースなし" Margin="5,0,0,0" IsEnabled="False"/>
+                </StackPanel>
             </StackPanel>
-            <TextBlock Text="その他の設定" Style="{StaticResource BodyTextStyle}" Margin="15,0,0,0"></TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="15,0,15,15" >
-                <CheckBox Content="シングルス" Margin="5,0,0,0" IsEnabled="False"/>
-                <CheckBox Content="ファイナルなし" Margin="5,0,0,0" IsEnabled="False"/>
-                <CheckBox Content="デュースなし" Margin="5,0,0,0" IsEnabled="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="15,0,15,15" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15,0,15,15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button Content="次へ" Style="{StaticResource ButtonRevealStyle}"/>
             </StackPanel>
-        </StackPanel>
-    </RelativePanel>
+        </Grid>
+    </Page>
+
 </UserControl>
