@@ -19,7 +19,7 @@ namespace Recoder.Views
         public InputerPage()
         {
             InitializeComponent();
-
+            
         }
 
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
@@ -34,10 +34,5 @@ namespace Recoder.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        //private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
-        //    NavigationService.Frame = SetupFrame;
-        //    NavigationService.Navigate<SetupPage.SetupRoot>();
-        //}
     }
 }

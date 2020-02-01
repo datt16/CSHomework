@@ -18,13 +18,33 @@ using Recoder.Views;
 
 namespace Recoder.Views.Inputer {
     public sealed partial class SetupPage3 : UserControl {
+
+        private static SetupPage3_Core core;
+
         public SetupPage3() {
             this.InitializeComponent();
+            if (core == null) {
+                core = new SetupPage3_Core();
+            }
         }
 
         private void InputSubmitButton_Click(object sender, RoutedEventArgs e) {
             var inputpage = new LiveInputerPage();
             Services.NavigationService.Navigate(typeof(LiveInputerPage));
         }
+    }
+
+    public class SetupPage3_Core {
+        public string TeamNameA { get; set; }
+
+        public string PlayerName_A_Baseliner { get; set; }
+
+        public string PlayerName_A_Volleyer { get; set; }
+
+        public string TeamNameB { get; set; }
+
+        public string PlayerName_B_Baseliner { get; set; }
+
+        public string PlayerName_B_Volleyer { get; set; }
     }
 }

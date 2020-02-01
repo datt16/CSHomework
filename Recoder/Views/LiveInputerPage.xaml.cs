@@ -12,6 +12,8 @@ using Recoder.Controls.Result;
 using Recoder.Core.Services;
 using Recoder.Core.Models;
 using Recoder.Helpers;
+using Windows.UI.Xaml;
+using Windows.UI.Popups;
 
 namespace Recoder.Views
 {
@@ -23,6 +25,20 @@ namespace Recoder.Views
         private BasicTag baseTag = new BasicTag();
         private int FaultCount = 0, RallyCount = 0;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public static readonly DependencyProperty GameObjectproperty = DependencyProperty.Register(
+            "GameObject",
+            typeof(MatchData),
+            typeof(LiveInputerPage),
+            new PropertyMetadata(new MatchData())
+            );
+
+        public MatchData GameObject {
+            get { return (MatchData) GetValue(GameObjectproperty); }
+            set {
+                SetValue(GameObjectproperty, value);
+            }
+        }
 
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
@@ -44,6 +60,23 @@ namespace Recoder.Views
             match.Init_Match();
             InitAllComponents();
         }
+
+        private async void _loaded() {
+            if (GameObject != null) {
+                // GameObjectをmatch.dataに代入する処理
+                match.data = GameObject;
+                // match.SettingMatch(GameObject);
+                var msg = new ContentDialog();
+                msg.Title = "試合が作成されました";
+                msg.Content
+                    = $"{match.data.TeamAName}" +
+                    $"\n{match.data.TeamAPlayers}" +
+                    $"\n{match.data.GamesCount}ゲームマッチ";
+                msg.PrimaryButtonText = "OK";
+                await msg.ShowAsync();
+            }
+        }
+
 
         private void InitAllComponents() {
             PointControl PtControl = new PointControl();

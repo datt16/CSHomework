@@ -21,33 +21,25 @@ namespace Recoder.Views.Inputer {
     public sealed partial class SetupPage2 : UserControl {
 
         private Pivot RootPivotWindow;
+        private static SetupPage2_Core core;
+        private readonly List<string> SelectCount = new List<string>() { "3","5","7" };
 
         public int GameCount
         {   
-            get { return (int)GetValue(GameCountproperty); }
+            get { return core.MatchGameCount; }
             set {
-                SetValue(GameCountproperty, value);
+                core.MatchGameCount = value;
                 ChooseGameCount.SelectedItem = value;
             }
         }
-
-        public Request GetRequests() {
-            var _requests = new Request() { MatchGameCount = GameCount };
-            return _requests;
-        }
-
-        List<string> SelectCount = new List<string>() { "3","5","7" };
-
-        public static readonly DependencyProperty GameCountproperty = DependencyProperty.Register(
-            "GameCount",
-            typeof(string),
-            typeof(SetupPage2),
-            new PropertyMetadata(0)
-            );
-
         public SetupPage2() {
             this.InitializeComponent();
-            
+            core = new SetupPage2_Core() { MatchGameCount = 5 };
+        }
+
+        public SetupPage2_Core GetRequests() {
+            var _requests = new SetupPage2_Core() { MatchGameCount = GameCount };
+            return _requests;
         }
 
         private async void GoNextWindowButton_Click(object sender, RoutedEventArgs e) {
@@ -58,7 +50,7 @@ namespace Recoder.Views.Inputer {
 
         }
 
-        private void _Loaded(object sender, RoutedEventArgs e) {
+        private void Page_Loaded(object sender, RoutedEventArgs e) {
             ChooseGameCount.SelectedItem = GameCount.ToString();
             var PvItem = Parent as PivotItem;
             RootPivotWindow = PvItem.Parent as Pivot;
@@ -69,7 +61,7 @@ namespace Recoder.Views.Inputer {
         }
     }
 
-    public class Request {
+    public class SetupPage2_Core {
 
         public int MatchGameCount { get; set; }
 

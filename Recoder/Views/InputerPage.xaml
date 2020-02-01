@@ -23,7 +23,7 @@
                 <Custom:SetupPage1 VerticalAlignment="Top" Height="Auto"/>
             </PivotItem>
             <PivotItem Header="">
-                <Custom:SetupPage2 VerticalAlignment="Top" GameCount="5"/>
+                <Custom:SetupPage2 VerticalAlignment="Top"/>
             </PivotItem>
             <PivotItem Header="">
                 <Custom:SetupPage3 VerticalAlignment="Top"/>

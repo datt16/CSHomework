@@ -14,7 +14,7 @@ namespace Recoder.Helpers {
         Point point = new Point();
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
         public string Server = "A", ReServer = "B";
-        public Game GameCache = null;
+        public Game GameCache;
 
         public void Init_Match() {
             Games = new List<Game>();
@@ -66,7 +66,7 @@ namespace Recoder.Helpers {
         /// <summary>
         /// ポイントを追加、記録
         /// </summary>
-        public String Add_Point(string Team, List<Tag> tag, int rally = 0) {
+        public string Add_Point(string Team, List<Tag> tag, int rally = 0) {
             var pt = new Point()
             {
                 Getter = Team,
@@ -140,19 +140,8 @@ namespace Recoder.Helpers {
             return res.ToString();
         }
 
-        public void MakeMatchFromInput(string teamNameA, string teamNameB, List<Player> playersA, List<Player> playersB, int gamesCount) {
-            data = new MatchData()
-            {
-                TeamAName = teamNameA,
-                TeamBName = teamNameB,
-                TeamAPlayers = playersA,
-                TeamBPlayers = playersB,
-                GamesCount = gamesCount
-            };
-            GenDebugLog("MMFI", $"マッチを作成 : {teamNameA} vs {teamNameB}");
-            GenDebugLog("MMFI", $"{teamNameA} : {playersA[0].Name}, {playersA[1].Name}");
-            GenDebugLog("MMFI", $"{teamNameB} : {playersB[0].Name}, {playersB[1].Name}");
-            GenDebugLog("MMFI", $"ゲーム数 : {gamesCount}マッチ");
+        public void MakeMatchFromInput() {
+            
         }
     }
 }
