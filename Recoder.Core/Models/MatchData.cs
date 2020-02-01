@@ -20,11 +20,11 @@ namespace Recoder.Core.Models {
 
         public int TeamB_GamePoint { get; set; } = 0;
 
-        public ICollection<Game> Games { get; set; }
+        public List<Game> Games { get; set; }
 
-        public ICollection<Player> TeamAPlayers { get; set; }
+        public List<Player> TeamAPlayers { get; set; }
 
-        public ICollection<Player> TeamBPlayers { get; set; }
+        public List<Player> TeamBPlayers { get; set; }
 
         public string ShortDiscription => $"{TeamAName} vs {TeamBName} : {TeamA_GamePoint} - {TeamB_GamePoint}";
     }

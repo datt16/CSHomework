@@ -13,6 +13,6 @@ namespace Recoder.Core.Models {
 
         public int Rally { get; set; } = 0;
 
-        public ICollection<Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
     }
 }

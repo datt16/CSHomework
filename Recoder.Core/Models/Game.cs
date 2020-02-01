@@ -8,6 +8,6 @@ namespace Recoder.Core.Models {
 
         public string Server { get; set; }
 
-        public ICollection<Point> Points { get; set; }
+        public List<Point> Points { get; set; }
     }
 }
