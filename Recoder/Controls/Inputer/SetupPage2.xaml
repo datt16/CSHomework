@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Loaded="_Loaded"
     d:DesignHeight="560" d:DesignWidth="560"
     Height="560" Width="560"
     MinHeight="560" MinWidth="560">
@@ -20,7 +21,7 @@
                 <TextBlock Text="試合の形式を指定してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
                 <TextBlock Text="基本設定" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="15,10,15,15">
-                    <ComboBox x:Name="MaxGameCount" ItemsSource="3 5 7"/>
+                    <ComboBox x:Name="ChooseGameCount" ItemsSource="{x:Bind SelectCount}" SelectionChanged="_SelectionChanged"/>
                     <TextBlock Text="ゲームマッチ" VerticalAlignment="Bottom" Margin="10,0,0,7.5"/>
                     <CheckBox Content="団体戦" IsEnabled="False" Margin="20,0,0,0"></CheckBox>
                 </StackPanel>
