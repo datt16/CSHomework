@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Recoder.Core.Models;
 using System.Diagnostics;
+using Recoder.Core.Services;
 
 namespace Recoder.Helpers {
     public class Match {
@@ -32,24 +33,24 @@ namespace Recoder.Helpers {
                     new Player()
                     {
                         Name = "Matt",
-                        Pos = "volley"
+                        Pos = PositonTag.Volleyer
                     },
                     new Player()
                     {
                         Name = "Jack",
-                        Pos = "baseliner"
+                        Pos = PositonTag.Volleyer
                     }
                 },
                 TeamBPlayers = new List<Player>(){
                     new Player()
                     {
                         Name = "Yuuri",
-                        Pos = "volley"
+                        Pos = PositonTag.Volleyer
                     },
                     new Player()
                     {
                         Name = "Mary",
-                        Pos = "baseliner"
+                        Pos = PositonTag.Baseliner
                     }
                 },
             };

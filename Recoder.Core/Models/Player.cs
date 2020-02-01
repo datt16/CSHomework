@@ -10,6 +10,6 @@ namespace Recoder.Core.Models {
 
         public int Age { get; set; }
 
-        public string Pos { get; set; }
+        public Tag Pos { get; set; }
     }
 }

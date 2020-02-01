@@ -62,4 +62,27 @@ namespace Recoder.Core.Services {
             TagName = "TwoBounds"
         };
     }
+
+    public class PositonTag {
+        public static Tag Volleyer = new Tag()
+        {
+            ShortTag = "Front",
+            DisplayName = "前衛",
+            TagName = "Volleyer"
+        };
+
+        public static Tag Baseliner = new Tag()
+        {
+            ShortTag = "Back",
+            DisplayName = "後衛",
+            TagName = "BaseLiner"
+        };
+
+        public static Tag Neutral = new Tag()
+        {
+            ShortTag = "Neut",
+            DisplayName = "",
+            TagName = "Neutral"
+        };
+    }
 }

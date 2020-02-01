@@ -28,13 +28,13 @@ namespace Recoder.Core.Services {
                     {
                         Name = "PlayerA",
                         Age = 16,
-                        Pos = "Volley"
+                        Pos = PositonTag.Volleyer
                     },
                     new Player()
                     {
                         Name = "PlayerB",
                         Age = 16,
-                        Pos = "Base"
+                        Pos = PositonTag.Baseliner
                     }
                 },
                 TeamBPlayers = new List<Player>()
@@ -43,13 +43,13 @@ namespace Recoder.Core.Services {
                     {
                         Name = "PlayerC",
                         Age = 16,
-                        Pos = "Volley"
+                        Pos = PositonTag.Volleyer
                     },
                     new Player()
                     {
                         Name = "PlayerD",
                         Age = 16,
-                        Pos = "Base"
+                        Pos = PositonTag.Baseliner
                     }
                 }
             }
