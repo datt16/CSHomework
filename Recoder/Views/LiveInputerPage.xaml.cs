@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Recoder.Controls.Result;
 using Recoder.Core.Services;
 using Recoder.Core.Models;
@@ -15,68 +16,34 @@ using Recoder.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Popups;
 
+
 namespace Recoder.Views
 {
     public sealed partial class LiveInputerPage : Page, INotifyPropertyChanged
     {
-        private Match match = new Match();
-        private MatchHelper helper = new MatchHelper();
-        private List<Tag> tags = new List<Tag>();
-        private BasicTag baseTag = new BasicTag();
-        private int FaultCount = 0, RallyCount = 0;
+        private static Match match = new Match();
+        private static MatchHelper helper = new MatchHelper();
+        private static List<Tag> tags = new List<Tag>();
+        private static BasicTag baseTag = new BasicTag();
+        private static int FaultCount = 0, RallyCount = 0;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static readonly DependencyProperty GameObjectproperty = DependencyProperty.Register(
-            "GameObject",
-            typeof(MatchData),
-            typeof(LiveInputerPage),
-            new PropertyMetadata(new MatchData())
-            );
 
-        public MatchData GameObject {
-            get { return (MatchData) GetValue(GameObjectproperty); }
-            set {
-                SetValue(GameObjectproperty, value);
-            }
-        }
+        public MatchData GameObject;
 
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            base.OnNavigatedTo(e);
+            GameObject = e.Parameter as MatchData;
         }
 
         public LiveInputerPage()
         {
             InitializeComponent();
-            Match match = new Match();
             BasicTag baseTag = new BasicTag();
-            match.Setup_Tester();
-            match.Init_Match();
+            // match.Setup_Tester();
+            // match.Init_Match();
             InitAllComponents();
         }
-
-        private async void _loaded() {
-            if (GameObject != null) {
-                // GameObjectをmatch.dataに代入する処理
-                match.data = GameObject;
-                // match.SettingMatch(GameObject);
-                var msg = new ContentDialog();
-                msg.Title = "試合が作成されました";
-                msg.Content
-                    = $"{match.data.TeamAName}" +
-                    $"\n{match.data.TeamAPlayers}" +
-                    $"\n{match.data.GamesCount}ゲームマッチ";
-                msg.PrimaryButtonText = "OK";
-                await msg.ShowAsync();
-            }
-        }
-
 
         private void InitAllComponents() {
             PointControl PtControl = new PointControl();
@@ -96,6 +63,16 @@ namespace Recoder.Views
             FaultButton_text.Text = "フォールト";
             RallyCountText.Text = "0";
             RallyCountDown.IsEnabled = false;
+        }
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
         }
 
         private void AddPoint(string team, List<Tag> tags) {
@@ -233,6 +210,39 @@ namespace Recoder.Views
             Init_Before_Serve();
             Undo_Button.IsEnabled = false;
             Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
+        }
+
+        private async void _Loaded() {
+            if (GameObject != null) {
+                // GameObjectをmatch.dataに代入する処理
+                match.data = GameObject;
+                GameObject.Title = "無題";
+                ShowInfo.Text = GameObject.Title;
+                // match.SettingMatch(GameObject);
+                var msg = new ContentDialog
+                {
+                    Title = "試合が作成されました",
+                    Content
+                    = $"{match.data.TeamAName.ToString()}" +
+                    $"\n{match.data.TeamAPlayers[0].Name.ToString()}" +
+                    $"\n{match.data.GamesCount}ゲームマッチ",
+                    PrimaryButtonText = "OK"
+                };
+                await msg.ShowAsync();
+            }
+            else {
+                var msg = new ContentDialog
+                {
+                    Title = "確認",
+                    Content = "GameDataの値がnullです",
+                    PrimaryButtonText = "OK"
+                };
+                await msg.ShowAsync();
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e) {
+            _Loaded();
         }
 
         private void RallyCountUp_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {

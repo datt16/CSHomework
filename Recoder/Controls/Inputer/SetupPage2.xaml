@@ -21,7 +21,7 @@
                 <TextBlock Text="試合の形式を指定してください" Style="{ThemeResource BodyTextStyle}" FontSize="12" Margin="15,10,10,10"/>
                 <TextBlock Text="基本設定" Style="{StaticResource BodyTextStyle}" Margin="15,10,0,0"></TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="15,10,15,15">
-                    <ComboBox x:Name="ChooseGameCount" ItemsSource="{x:Bind SelectCount}" SelectionChanged="_SelectionChanged"/>
+                    <ComboBox x:Name="ChooseGameCount" ItemsSource="{x:Bind SelectCount}" SelectedItem="{x:Bind GameCount}"/>
                     <TextBlock Text="ゲームマッチ" VerticalAlignment="Bottom" Margin="10,0,0,7.5"/>
                     <CheckBox Content="団体戦" IsEnabled="False" Margin="20,0,0,0"></CheckBox>
                 </StackPanel>

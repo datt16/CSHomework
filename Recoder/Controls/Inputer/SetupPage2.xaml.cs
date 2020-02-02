@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Recoder.Views;
+using System.Threading.Tasks;
 
 // ユーザー コントロールの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
@@ -27,38 +29,29 @@ namespace Recoder.Views.Inputer {
         public int GameCount
         {   
             get { return core.MatchGameCount; }
-            set {
-                core.MatchGameCount = value;
-                ChooseGameCount.SelectedItem = value;
-            }
+            set { core.MatchGameCount = value; }
         }
         public SetupPage2() {
-            this.InitializeComponent();
+            InitializeComponent();
             core = new SetupPage2_Core() { MatchGameCount = 5 };
         }
 
-        public SetupPage2_Core GetRequests() {
+        private void Page_Loaded(object sender, RoutedEventArgs e) {
+            ChooseGameCount.SelectedItem = GameCount.ToString();
+            RootPivotWindow = InputerPage.Rootpivot;
+        }
+
+        public SetupPage2_Core GetData() {
             var _requests = new SetupPage2_Core() { MatchGameCount = GameCount };
             return _requests;
         }
 
         private async void GoNextWindowButton_Click(object sender, RoutedEventArgs e) {
             RootPivotWindow.SelectedIndex += 1;
-
-            var data = this.GetRequests();
-            await new MessageDialog($"{data.MatchGameCount.ToString()}マッチ", "確認").ShowAsync();
-
+            await Task.Delay(10);
+            InputerPage.SetBaseData(GetData());
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e) {
-            ChooseGameCount.SelectedItem = GameCount.ToString();
-            var PvItem = Parent as PivotItem;
-            RootPivotWindow = PvItem.Parent as Pivot;
-        }
-
-        private async void _SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            await new MessageDialog($"{ChooseGameCount.SelectedValue.ToString()}が選択されました", "タイトル").ShowAsync();
-        }
     }
 
     public class SetupPage2_Core {

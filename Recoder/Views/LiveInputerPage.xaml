@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:c="using:Recoder.Controls"
     xmlns:c_result="using:Recoder.Controls.Result"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
     
     
     <Grid x:Name="Main" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
@@ -18,6 +19,7 @@
             </CommandBar.Content>
             <AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>
         </CommandBar>
+        <TextBlock x:Name="ShowInfo" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
         <Grid Margin="21,0,-21,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource AppBarExpandButtonThemeWidthGridLength}"/>

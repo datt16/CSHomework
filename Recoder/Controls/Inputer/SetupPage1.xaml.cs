@@ -22,8 +22,7 @@ namespace Recoder.Views.Inputer {
             this.InitializeComponent();
         }
         private void GoLiveButton_Click(object sender, RoutedEventArgs e) {
-            var PvItem = Parent as PivotItem;
-            var RootPivotWindow = PvItem.Parent as Pivot;
+            var RootPivotWindow = InputerPage.Rootpivot;
             RootPivotWindow.SelectedIndex += 1;
         }
     }

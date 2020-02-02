@@ -12,74 +12,66 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Recoder.Views;
-using Recoder.Controls;
 using Recoder.Core.Models;
-using Recoder.Helpers;
 
-// ユーザー コントロールの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+// コンテンツ ダイアログの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
-namespace Recoder.Views.Inputer {
-    public sealed partial class SetupPage3 : UserControl {
-
+namespace Recoder.Controls {
+    public sealed partial class MakeMatchInfo : ContentDialog {
         private static SetupPage3_Core core;
 
         public string TeamNameA {
-            get { return TeamNameA_TextBox.Text; }
+            get { return core.TeamNameA; }
             set { core.TeamNameA = value; }
         }
 
         public string A_Baseliner {
-            get { return A_Back_TextBox.Text; }
+            get { return core.PlayerName_A_Baseliner; }
             set { core.PlayerName_A_Baseliner = value; }
         }
 
         public string A_Volleyer {
-            get { return A_Front_TextBox.Text; }
+            get { return core.PlayerName_A_Volleyer; }
             set { core.PlayerName_A_Volleyer = value; }
         }
 
         public string TeamNameB {
-            get { return TeamNameB_TextBox.Text; }
+            get { return core.TeamNameB; }
             set { core.TeamNameB = value; }
         }
 
         public string B_Baseliner {
-            get { return B_Back_Textbox.Text; }
+            get { return core.PlayerName_B_Baseliner; }
             set { core.PlayerName_B_Baseliner = value; }
         }
 
         public string B_Volleyer {
-            get { return B_Front_Textbox.Text; }
+            get { return core.PlayerName_B_Volleyer; }
             set { core.PlayerName_B_Volleyer = value; }
         }
 
-        public SetupPage3_Core GetData() {
-            var data = new SetupPage3_Core() {
-                TeamNameA = TeamNameA,
-                TeamNameB = TeamNameB,
-                PlayerName_A_Baseliner = A_Baseliner,
-                PlayerName_A_Volleyer = A_Volleyer,
-                PlayerName_B_Baseliner = B_Baseliner,
-                PlayerName_B_Volleyer = B_Volleyer
-            };
-            return data;
+        public int MatchGameCount {
+            get { return core.MatchGameCount; }
+            set { core.MatchGameCount = value; }
         }
 
-        public SetupPage3() {
+        public void SetFromMatchData(MatchData data) {
+            TeamNameA = data.TeamAName;
+            TeamNameB = data.TeamBName;
+            A_Baseliner = data.TeamAPlayers[0].Name;
+            B_Baseliner = data.TeamBPlayers[0].Name;
+            A_Volleyer = data.TeamAPlayers[1].Name;
+            B_Volleyer = data.TeamBPlayers[1].Name;
+            MatchGameCount = data.GamesCount;
+        }
+
+        public MakeMatchInfo() {
             this.InitializeComponent();
             if (core == null) {
                 core = new SetupPage3_Core();
             }
         }
 
-        private async void InputSubmitButton_Click(object sender, RoutedEventArgs e) {
-            InputerPage.SetBaseData(GetData());
-            MakeMatchInfo msg = new MakeMatchInfo();
-            msg.SetFromMatchData(InputerPage.baseMatchData);
-            await msg.ShowAsync();
-            Services.NavigationService.Navigate(typeof(LiveInputerPage), InputerPage.baseMatchData);
-        }
     }
 
     public class SetupPage3_Core {
@@ -94,5 +86,7 @@ namespace Recoder.Views.Inputer {
         public string PlayerName_B_Baseliner { get; set; }
 
         public string PlayerName_B_Volleyer { get; set; }
+
+        public int MatchGameCount { get; set; }
     }
 }

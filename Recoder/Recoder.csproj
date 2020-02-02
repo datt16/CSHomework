@@ -137,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Controls\MakeMatchInfo.xaml.cs">
+      <DependentUpon>MakeMatchInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PlayerCard.xaml.cs">
       <DependentUpon>PlayerCard.xaml</DependentUpon>
     </Compile>
@@ -157,9 +160,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Views\InputerPage.xaml.cs">
       <DependentUpon>InputerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Inputer\InputerMasterPage.xaml.cs">
-      <DependentUpon>InputerMasterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Inputer\SetupPage1.xaml.cs">
       <DependentUpon>SetupPage1.xaml</DependentUpon>
@@ -185,9 +185,6 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SetupPage\SetupRoot.xaml.cs">
-      <DependentUpon>SetupRoot.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +199,10 @@
     <Page Include="Assets\tenniscourt_basic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MakeMatchInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PlayerCard.xaml">
       <SubType>Designer</SubType>
@@ -243,10 +244,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Inputer\InputerMasterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\Inputer\SetupPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,10 +275,6 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SetupPage\SetupRoot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
