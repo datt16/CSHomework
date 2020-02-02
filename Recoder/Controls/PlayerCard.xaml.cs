@@ -19,9 +19,10 @@ using Windows.UI;
 namespace Recoder.Controls {
     public sealed partial class PlayerCard : UserControl {
         private bool IsServe = false;
-        private bool IsReServe = false;
+        private bool IsReServe= false;
         private string PlayerName;
         private string TeamName;
+
         public int BallCount;
 
         private readonly SolidColorBrush HighLight = new SolidColorBrush(ColorHelper.FromArgb(255, 30, 90, 255));
@@ -33,7 +34,7 @@ namespace Recoder.Controls {
             All_Invisibled();
             Init(false, false);
         }
-        public void Init(bool Serve, bool ReServe) { // 初期化関数、サーブをセット
+        public void Init(bool Serve, bool ReServe) {
             IsServe = Serve;
             IsReServe = ReServe;
             if (IsServe) { // サーブ時:サーブ用パネルを表示、1球目のハイライトを表示
@@ -56,15 +57,18 @@ namespace Recoder.Controls {
             Ball2.Stroke = HighLight;
             BallCount = 1;
         }
+
         private void All_Invisibled() {
             PanelServe.Visibility = Visibility.Collapsed; PanelServeText.Visibility = Visibility.Collapsed;
             PanelReServe.Visibility = Visibility.Collapsed; PanelReServeText.Visibility = Visibility.Collapsed;
             PanelBall.Visibility = Visibility.Collapsed;
         }
+
         public void SetPlayerName(string NewPlayerName) { // 名前をセット
             PlayerName = NewPlayerName;
             PlayerNameText.Text = NewPlayerName;
         }
+
         public void SetTeamName(string NewTeamName) { // チーム名をセット
             TeamName = NewTeamName;
             TeamNameText.Text = NewTeamName;

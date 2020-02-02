@@ -8,13 +8,15 @@ using System.Diagnostics;
 using Recoder.Core.Services;
 
 namespace Recoder.Helpers {
+    using static Control_Alias;
     public class Match {
         public MatchData data = new MatchData();
         List<Game> Games = new List<Game>();
         List<Point> Points = new List<Point>();
         Point point = new Point();
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
-        public string Server = "A", ReServer = "B";
+        public string Server = TEAM_A, ReServer = TEAM_B;
+        public string Side_A = SIDE_LEFT, Side_B = SIDE_RIGHT;
         public Game GameCache;
 
         public void Init_Match() {
@@ -33,24 +35,24 @@ namespace Recoder.Helpers {
                     new Player()
                     {
                         Name = "Matt",
-                        Pos = PositonTag.Volleyer
+                        Pos = Player_Position.Volleyer
                     },
                     new Player()
                     {
                         Name = "Jack",
-                        Pos = PositonTag.Volleyer
+                        Pos = Player_Position.Volleyer
                     }
                 },
                 TeamBPlayers = new List<Player>(){
                     new Player()
                     {
                         Name = "Yuuri",
-                        Pos = PositonTag.Volleyer
+                        Pos = Player_Position.Volleyer
                     },
                     new Player()
                     {
                         Name = "Mary",
-                        Pos = PositonTag.Baseliner
+                        Pos = Player_Position.Baseliner
                     }
                 },
             };
@@ -60,8 +62,21 @@ namespace Recoder.Helpers {
         }
 
         public void ChangeServer() {
-            if (Server == "A") { Server = "B"; ReServer = "A"; }
-            else if (Server == "B") { Server = "A"; ReServer = "B"; }
+            if (Server == TEAM_A) {
+                Server = TEAM_B;
+                ReServer = TEAM_A;
+            }
+            else if (Server == TEAM_B) {
+                Server = TEAM_A;
+                ReServer = TEAM_B;
+            }
+        }
+
+        public void ChangeSides() {
+            if (Side_A == SIDE_LEFT) Side_A = SIDE_RIGHT;
+            else Side_A = SIDE_LEFT;
+            if (Side_B == SIDE_LEFT) Side_B = SIDE_RIGHT;
+            else Side_B = SIDE_LEFT;
         }
 
         /// <summary>

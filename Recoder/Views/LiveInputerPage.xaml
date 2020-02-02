@@ -62,8 +62,8 @@
                         <TextBlock x:Name="GCnt" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
                     </Grid>
                     <TextBlock x:Name="Cnt" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="33-04" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                    <c:PlayerCard x:Name="sample" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="0" />
-                    <c:PlayerCard x:Name="sample1" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" />
+                    <c:PlayerCard x:Name="sample1" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="0" Margin="0,0,0,0" />
+                    <c:PlayerCard x:Name="sample" Width="150" Height="220" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Margin="0,0,0,0"/>
                 </Grid>
                 <Grid Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,15">
                     <StackPanel Grid.Row="1" Orientation="Horizontal">

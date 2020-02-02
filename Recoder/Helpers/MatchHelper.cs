@@ -12,8 +12,11 @@ using Windows.UI.Xaml;
 using Recoder.Core.Models;
 using Recoder.Helpers;
 using Recoder.Controls;
+using Recoder.Core.Services;
 
 namespace Recoder.Helpers {
+    using static Control_Alias;
+    using static Positon_Alias;
     public class MatchHelper {
 
         public TextBlock tagText = new TextBlock()
@@ -46,7 +49,7 @@ namespace Recoder.Helpers {
         /// <param name="type">["Base","SoftTennis","SoftTennis_Final"]</param>
         /// <returns></returns>
         public string GenerateCountText(int CountA, int CountB, string type = "SoftTennis") {
-            if (type == "Base") {
+            if (type == TYPE_BASIC) {
                 if (CountA >= 10) {
                     return CountA.ToString() + " - 0" + CountB.ToString();
                 }
@@ -54,7 +57,7 @@ namespace Recoder.Helpers {
                     return "0" + CountA.ToString() + " - " + CountB.ToString();
                 }
             }
-            else if (type == "SoftTennis") {
+            else if (type == TYPE_ST) {
                 if (CountA > CountB && CountA >= 4) {
                     return "Adv - " + CountB.ToString();
                 }
@@ -62,7 +65,7 @@ namespace Recoder.Helpers {
                     return CountA.ToString() + " - Adv";
                 }
             }
-            else if (type == "SoftTennis_Final") {
+            else if (type == TYPE_ST_FINAL) {
                 if (CountA > CountB && CountA >= 6) {
                     return "Adv - " + CountB.ToString();
                 }
@@ -73,35 +76,35 @@ namespace Recoder.Helpers {
             return CountA.ToString() + " - " + CountB.ToString();
         }
 
+        private static void NullCheck(params object[] obj) {
+            foreach(object o in obj) {
+                if (o == null) Debug.WriteLine($"{o.ToString()} is Null.");
+            }
+        }
+
         /// <summary>
         /// プレイヤーカードのセットアップ
         /// </summary>
-        /// <param name="NewPlayerName">プレイヤーの名前</param>
-        /// <param name="NewTeamName">チームの名前</param>
-        /// <param name="ServeOrReServe">サーバー:"Server", レシーバー:"ReServer"</param>
-        /// <param name="position">前衛:"volley", 後衛:"baseliner"</param>
-        /// <param name="TeamIndex">チームのサイド選択 "A"or"B"</param>
-        public PlayerCard Set_PlayerCard(
-            // TODO: InitilizeComponentを先に行うか後に行うか検討。後のほうが望ましい
-            string NewPlayerName,
-            string NewTeamName,
-            string ServeOrReServe,
-            string position,
-            string TeamIndex) {
+        public static PlayerCard Set_PlayerCard(Player player, string NewTeamName, string IsServe, string Side, string yPos, string xPos) {
+            NullCheck(player, NewTeamName, IsServe, Side);
             PlayerCard card = new PlayerCard();
             card.InitializeComponent();
-            Init_Card(card, NewTeamName, NewPlayerName, ServeOrReServe);
-            Set_Card_Position(card, position, TeamIndex);
+
+            string NewPlayerName = player.Name;
+
+            Init_Card(card, NewTeamName, NewPlayerName, IsServe);
+            Set_Card_Position(card, yPos, Side, xPos);
+
             return card;
         }
 
         /// <summary>
         /// カードの初期化
         /// </summary>
-        private void Init_Card(PlayerCard Card, string TName, string PName, string pos) {
+        private static void Init_Card(PlayerCard Card, string TName, string PName, string pos) {
             bool Serve = false, ReServe = false;
-            if (pos == "Serve") Serve = true;
-            else if (pos == "ReServe") ReServe = true;
+            if (pos == SERVE) Serve = true;
+            else if (pos == RE_SERVE) ReServe = true;
             Card.Init(Serve, ReServe);
             Card.SetPlayerName(PName);
             Card.SetTeamName(TName);
@@ -112,22 +115,52 @@ namespace Recoder.Helpers {
         /// <summary>
         /// カードのポジション設定
         /// </summary>
-        public void Set_Card_Position(PlayerCard Card, string pos, string Team) {
-            var IsFront = false;
+        public static void Set_Card_Position(PlayerCard Card, string IsTop, string IsLeft, string IsFront) {
             int row = 0;
             int col = 0;
-            if (pos == "volley") IsFront = true;
-            else if (pos == "baseliner") IsFront = true;
-            else // エラーハンドリング
+            Thickness Margin = new Thickness(0, 0, 0, 0);
+            Card_Positon tag = Left_Front_Top;
+            if (IsLeft == SIDE_LEFT) {
+                if(IsFront == POS_FRONT) {
+                    if (IsTop == POS_TOP) {
+                        tag = Left_Front_Top;
+                    }
+                    else {
+                        tag = Left_Front_Btm;
+                    }
+                }
+                else {
+                    if (IsTop == POS_TOP) {
+                        tag = Left_Back_Top;
+                    }
+                    else {
+                        tag = Left_Back_Btm;
+                    }
+                }
+            }
+            else {
+                if (IsFront == POS_FRONT) {
+                    if (IsTop == POS_TOP) {
+                        tag = Right_Front_Top;
+                    }
+                    else {
+                        tag = Right_Front_Btm;
+                    }
+                }
+                else {
+                    if (IsTop == POS_TOP) {
+                        tag = Right_Back_Top;
+                    }
+                    else {
+                        tag = Right_Back_Btm;
+                    }
+                }
+            }
+            row = tag.Row;
+            col = tag.Col;
+            Margin = tag.Margin;
 
-            if (Team == "A") {
-                if (IsFront) (row, col) = (0, 1);
-                else row = 1;
-            }
-            else if (Team == "B") {
-                if (IsFront) (row, col) = (1, 3);
-                else (row, col) = (0, 4);
-            }
+            Card.Margin = Margin;
             Grid.SetColumn(Card, col);
             Grid.SetRow(Card, row);
             Grid.SetColumnSpan(Card, 2);

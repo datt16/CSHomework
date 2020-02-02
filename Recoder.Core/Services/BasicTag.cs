@@ -63,7 +63,7 @@ namespace Recoder.Core.Services {
         };
     }
 
-    public class PositonTag {
+    public class Player_Position {
         public static Tag Volleyer = new Tag()
         {
             ShortTag = "Front",

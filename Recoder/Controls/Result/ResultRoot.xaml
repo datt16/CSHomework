@@ -30,13 +30,13 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="1" Background="{ThemeResource SystemAccentColor}">
-                            <TextBlock x:Name="TeamAText" Text="A" FontSize="28" Foreground="{ThemeResource SystemBaseHighColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,10"/>
+                            <TextBlock x:Name="TeamAText" Text="A" FontSize="28" Foreground="{StaticResource SystemBaseHighColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,10"/>
                             <ToolTipService.ToolTip>
                                 <ToolTip Content="チームA" VerticalOffset="30"/>
                             </ToolTipService.ToolTip>
                         </StackPanel>
                         <StackPanel Grid.Row="2">
-                            <TextBlock x:Name="TeamBText" Text="B" FontSize="28" Foreground="{ThemeResource SystemBaseHighColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,10"/>
+                            <TextBlock x:Name="TeamBText" Text="B" FontSize="28" Foreground="{StaticResource SystemBaseHighColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,10"/>
                             <ToolTipService.ToolTip>
                                 <ToolTip Content="チームB" VerticalOffset="-50"/>
                             </ToolTipService.ToolTip>

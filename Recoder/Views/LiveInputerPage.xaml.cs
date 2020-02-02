@@ -19,6 +19,7 @@ using Windows.UI.Popups;
 
 namespace Recoder.Views
 {
+    using static Control_Alias;
     public sealed partial class LiveInputerPage : Page, INotifyPropertyChanged
     {
         private static Match match = new Match();
@@ -27,8 +28,6 @@ namespace Recoder.Views
         private static BasicTag baseTag = new BasicTag();
         private static int FaultCount = 0, RallyCount = 0;
         public event PropertyChangedEventHandler PropertyChanged;
-
-
         public MatchData GameObject;
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
@@ -40,8 +39,7 @@ namespace Recoder.Views
         {
             InitializeComponent();
             BasicTag baseTag = new BasicTag();
-            // match.Setup_Tester();
-            // match.Init_Match();
+            // サーバー選択画面開く
             InitAllComponents();
         }
 
@@ -54,6 +52,18 @@ namespace Recoder.Views
             Undo_Button.IsEnabled = false;
             CountResult.InitRoot(match.data.TeamAName, match.data.TeamBName);
             CountResult.ClearAll();
+            MainGrid.Children.Clear();
+        }
+
+        private void InitCards() {
+            // A_後衛
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[0], match.data.TeamAName, SERVE   , SIDE_LEFT , POS_BOTTOM, POS_BACK ));
+            // A_前衛
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[1], match.data.TeamAName, NONE    , SIDE_LEFT , POS_TOP   , POS_FRONT));
+            // B_後衛
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[0], match.data.TeamBName, RE_SERVE, SIDE_RIGHT, POS_TOP   , POS_BACK ));
+            // B_前衛
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[1], match.data.TeamBName, NONE    , SIDE_RIGHT, POS_BOTTOM, POS_FRONT));
         }
 
         private void Init_Before_Serve() {
@@ -229,6 +239,7 @@ namespace Recoder.Views
                     PrimaryButtonText = "OK"
                 };
                 await msg.ShowAsync();
+                InitCards();
             }
             else {
                 var msg = new ContentDialog
@@ -252,5 +263,6 @@ namespace Recoder.Views
                 RallyCountDown.IsEnabled = true;
             }
         }
+        
     }
 }

@@ -39,12 +39,12 @@ namespace Recoder.Views
                     new Player()
                     {
                         Name = data.PlayerName_A_Baseliner,
-                        Pos = PositonTag.Baseliner
+                        Pos = Player_Position.Baseliner
                     },
                     new Player()
                     {
                         Name = data.PlayerName_A_Volleyer,
-                        Pos = PositonTag.Volleyer
+                        Pos = Player_Position.Volleyer
                     }
                 };
                 baseMatchData.TeamBPlayers = new List<Player>
@@ -52,12 +52,12 @@ namespace Recoder.Views
                     new Player()
                     {
                         Name = data.PlayerName_B_Baseliner,
-                        Pos = PositonTag.Baseliner
+                        Pos = Player_Position.Baseliner
                     },
                     new Player()
                     {
                         Name = data.PlayerName_B_Volleyer,
-                        Pos = PositonTag.Volleyer
+                        Pos = Player_Position.Volleyer
                     }
                 };
             }

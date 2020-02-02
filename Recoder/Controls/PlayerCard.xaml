@@ -9,7 +9,7 @@
     d:DesignHeight="220"
     d:DesignWidth="150">
 
-    <Grid Background="{ThemeResource SystemAltMediumColor}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="25*"></RowDefinition>
