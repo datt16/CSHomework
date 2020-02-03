@@ -160,6 +160,9 @@
     <Compile Include="Controls\Result\ResultRoot.xaml.cs">
       <DependentUpon>ResultRoot.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ServiceSelector.xaml.cs">
+      <DependentUpon>ServiceSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Match.cs" />
     <Compile Include="Helpers\MatchHelper.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -226,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Result\ResultRoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ServiceSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

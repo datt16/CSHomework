@@ -82,6 +82,16 @@ namespace Recoder.Helpers {
             }
         }
 
+        public static object GetDialogData(object e) {
+            if (e.GetType() == typeof(ServiceSelector)) {
+                string ServerTeam;
+                ServiceSelector Element = e as ServiceSelector;
+                ServerTeam = Element.Selected;
+                return ServerTeam;
+            }
+            return null;
+        }
+
         /// <summary>
         /// プレイヤーカードのセットアップ
         /// </summary>

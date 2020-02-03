@@ -15,7 +15,7 @@ using Recoder.Core.Models;
 using Recoder.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Popups;
-
+using Recoder.Controls;
 
 namespace Recoder.Views
 {
@@ -27,6 +27,7 @@ namespace Recoder.Views
         private static List<Tag> tags = new List<Tag>();
         private static BasicTag baseTag = new BasicTag();
         private static int FaultCount = 0, RallyCount = 0;
+        private string server;
         public event PropertyChangedEventHandler PropertyChanged;
         public MatchData GameObject;
 
@@ -64,6 +65,18 @@ namespace Recoder.Views
             MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[0], match.data.TeamBName, RE_SERVE, SIDE_RIGHT, POS_TOP   , POS_BACK ));
             // B_前衛
             MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[1], match.data.TeamBName, NONE    , SIDE_RIGHT, POS_BOTTOM, POS_FRONT));
+        }
+
+        private async void SelectServer() {
+            ServiceSelector serviceSelector = new ServiceSelector();
+            serviceSelector.setDialog(match.data);
+            serviceSelector.SetData += new EventHandler(GetServer);
+            await serviceSelector.ShowAsync();
+        }
+
+        private void GetServer(object sender, System.EventArgs e) {
+            server = MatchHelper.GetDialogData(sender).ToString();
+            match.Server = server;
         }
 
         private void Init_Before_Serve() {
@@ -238,8 +251,9 @@ namespace Recoder.Views
                     $"\n{match.data.GamesCount}ゲームマッチ",
                     PrimaryButtonText = "OK"
                 };
-                await msg.ShowAsync();
+                SelectServer();
                 InitCards();
+                // await msg.ShowAsync();
             }
             else {
                 var msg = new ContentDialog
