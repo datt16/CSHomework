@@ -10,7 +10,7 @@
   <Identity
     Name="60F9C7A1-9560-46A3-8886-776E3F626E7D"
     Publisher="CN=osato"
-    Version="1.0.0.0" />
+    Version="0.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="60F9C7A1-9560-46A3-8886-776E3F626E7D" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -33,13 +33,20 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Recoder.App">
       <uap:VisualElements
-        DisplayName="ms-resource:AppDisplayName"
+        DisplayName="MatchRecoder"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="ms-resource:AppDescription"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="MatchRec">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="darkSlateGray"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
 
       <Extensions>

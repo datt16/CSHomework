@@ -19,12 +19,15 @@ namespace Recoder.Helpers {
     using static Positon_Alias;
     public class MatchHelper {
 
+        public static Dictionary<string, PlayerCard> Cards = new Dictionary<string, PlayerCard>();
         public TextBlock tagText = new TextBlock()
         {
             Text = "",
             Margin = new Thickness(5, 10, 10, 10),
             FontSize = 12
         };
+        public static string A_Side = SIDE_LEFT;
+        public static string B_Side = SIDE_RIGHT;
 
         /// <summary>
         /// カウントを表示するオブジェクト用のテキストを生成。
@@ -95,7 +98,7 @@ namespace Recoder.Helpers {
         /// <summary>
         /// プレイヤーカードのセットアップ
         /// </summary>
-        public static PlayerCard Set_PlayerCard(Player player, string NewTeamName, string IsServe, string Side, string yPos, string xPos) {
+        public static PlayerCard Set_PlayerCard(Player player, string NewTeamName, string IsServe, string Side, string yPos, string xPos, string Key) {
             NullCheck(player, NewTeamName, IsServe, Side);
             PlayerCard card = new PlayerCard();
             card.InitializeComponent();
@@ -104,7 +107,7 @@ namespace Recoder.Helpers {
 
             Init_Card(card, NewTeamName, NewPlayerName, IsServe);
             Set_Card_Position(card, yPos, Side, xPos);
-
+            Cards.Add(Key, card);
             return card;
         }
 
@@ -115,6 +118,7 @@ namespace Recoder.Helpers {
             bool Serve = false, ReServe = false;
             if (pos == SERVE) Serve = true;
             else if (pos == RE_SERVE) ReServe = true;
+            Debug.WriteLine($"{TName}: {PName}, {pos}, Serve :{Serve}, Reserve : {ReServe}");
             Card.Init(Serve, ReServe);
             Card.SetPlayerName(PName);
             Card.SetTeamName(TName);
@@ -191,6 +195,70 @@ namespace Recoder.Helpers {
             }
             res.Append("-------------------------");
             Debug.WriteLine($"{res}");
+        }
+
+        public static void Update_Cards_IsServe(string ServerTeam, int CountIndex) {
+
+            StringBuilder S_SearchIndex = new StringBuilder();
+            S_SearchIndex.Append("TEAM_");
+
+            StringBuilder R_SearchIndex = new StringBuilder();
+            R_SearchIndex.Append("TEAM_");
+            string ReServerTeam = null;
+
+            if (ServerTeam == TEAM_A) ReServerTeam = TEAM_B;
+            else if (ServerTeam == TEAM_B) ReServerTeam = TEAM_A;
+
+            string server = BASELINER;
+            string re_server = BASELINER;
+            string[] a = new string[] { BASELINER, BASELINER, VOLLEYER, VOLLEYER };
+
+            int n = 0;
+            if (CountIndex % 4 - 1 == -1) n = 3;
+            else n = CountIndex % 4 - 1;
+            server = a[n];
+
+            for (int i = 0; i < CountIndex-1; i++) {
+                if (re_server == BASELINER) {
+                    re_server = VOLLEYER;
+                }
+                else if (re_server == VOLLEYER) {
+                    re_server = BASELINER;
+                }
+            }
+
+            S_SearchIndex.Append(ServerTeam);
+            S_SearchIndex.Append("_");
+            S_SearchIndex.Append(server);
+            
+            R_SearchIndex.Append(ReServerTeam);
+            R_SearchIndex.Append("_");
+            R_SearchIndex.Append(re_server);
+
+            Debug.WriteLine($"{CountIndex}ポイント目");
+            Debug.WriteLine($"Server = {S_SearchIndex}\nReServer = {R_SearchIndex}");
+            foreach(KeyValuePair<string,PlayerCard> c in Cards) {
+                c.Value.Init(false, false);
+            }
+            // Server
+            Cards[S_SearchIndex.ToString()].Init(true, false);
+            // ReServer
+            Cards[R_SearchIndex.ToString()].Init(false, true);
+            // サーバーの位置 IsFront = BACK;
+            // {A_side}_{IsFront}_{IsTop}
+            // レシーバーの位置
+            // Aチームその他のプレーヤーの位置
+            // Bチームその他のプレーヤーの位置
+
+            foreach (KeyValuePair<string, PlayerCard> c in Cards) {
+                if (c.Value.IsServe_on_card) {
+                    
+                }
+                else if (c.Value.IsReServe_on_card) {
+
+                }
+            }
+
         }
     }
 

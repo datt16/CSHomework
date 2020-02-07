@@ -48,7 +48,7 @@ namespace Recoder.Views.Inputer {
 
         private async void GoNextWindowButton_Click(object sender, RoutedEventArgs e) {
             RootPivotWindow.SelectedIndex += 1;
-            await Task.Delay(10);
+            await Task.Delay(40);
             InputerPage.SetBaseData(GetData());
         }
 

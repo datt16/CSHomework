@@ -73,10 +73,10 @@ namespace Recoder.Helpers {
         }
 
         public void ChangeSides() {
-            if (Side_A == SIDE_LEFT) Side_A = SIDE_RIGHT;
-            else Side_A = SIDE_LEFT;
-            if (Side_B == SIDE_LEFT) Side_B = SIDE_RIGHT;
-            else Side_B = SIDE_LEFT;
+            if (MatchHelper.A_Side == SIDE_LEFT) MatchHelper.A_Side = SIDE_RIGHT;
+            else MatchHelper.A_Side = SIDE_LEFT;
+            if (MatchHelper.B_Side == SIDE_LEFT) MatchHelper.B_Side = SIDE_RIGHT;
+            else MatchHelper.B_Side = SIDE_LEFT;
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Recoder.Helpers {
             else if (GCountA == GamesCount / 2 + 1 || GCountB == GamesCount / 2 + 1)  {
                 // EndMatch;
             }
-            (Point_index, PointA, PointB) = (0, 0, 0);
+            (Point_index, PointA, PointB) = (1, 0, 0);
             List<Point> Points = new List<Point>();
         }
 

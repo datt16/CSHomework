@@ -40,7 +40,6 @@ namespace Recoder.Views
         {
             InitializeComponent();
             BasicTag baseTag = new BasicTag();
-            // サーバー選択画面開く
             InitAllComponents();
         }
 
@@ -58,13 +57,13 @@ namespace Recoder.Views
 
         private void InitCards() {
             // A_後衛
-            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[0], match.data.TeamAName, SERVE   , SIDE_LEFT , POS_BOTTOM, POS_BACK ));
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[0], match.data.TeamAName, SERVE   , SIDE_LEFT , POS_BOTTOM, POS_BACK , TEAM_A_BASELINER));
             // A_前衛
-            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[1], match.data.TeamAName, NONE    , SIDE_LEFT , POS_TOP   , POS_FRONT));
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamAPlayers[1], match.data.TeamAName, NONE    , SIDE_LEFT , POS_TOP   , POS_FRONT, TEAM_A_VOLLEYER));
             // B_後衛
-            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[0], match.data.TeamBName, RE_SERVE, SIDE_RIGHT, POS_TOP   , POS_BACK ));
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[0], match.data.TeamBName, RE_SERVE, SIDE_RIGHT, POS_TOP   , POS_BACK , TEAM_B_BASELINER));
             // B_前衛
-            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[1], match.data.TeamBName, NONE    , SIDE_RIGHT, POS_BOTTOM, POS_FRONT));
+            MainGrid.Children.Add(MatchHelper.Set_PlayerCard(match.data.TeamBPlayers[1], match.data.TeamBName, NONE    , SIDE_RIGHT, POS_BOTTOM, POS_FRONT, TEAM_B_VOLLEYER));
         }
 
         private async void SelectServer() {
@@ -77,6 +76,13 @@ namespace Recoder.Views
         private void GetServer(object sender, System.EventArgs e) {
             server = MatchHelper.GetDialogData(sender).ToString();
             match.Server = server;
+            if (server == TEAM_A) {
+                match.ReServer = TEAM_B;
+            }
+            else if (server == TEAM_B) {
+                match.ReServer = TEAM_A;
+            }
+            MatchHelper.Update_Cards_IsServe(match.Server, match.Point_index);
         }
 
         private void Init_Before_Serve() {
@@ -86,6 +92,7 @@ namespace Recoder.Views
             FaultButton_text.Text = "フォールト";
             RallyCountText.Text = "0";
             RallyCountDown.IsEnabled = false;
+            MatchHelper.Update_Cards_IsServe(match.Server, match.Point_index);
         }
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
@@ -226,6 +233,7 @@ namespace Recoder.Views
             }
         }
 
+        [Obsolete]
         private void Undo_Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             match.Undo();
             CountResult.ClearAll();

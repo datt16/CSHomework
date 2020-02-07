@@ -21,6 +21,12 @@ namespace Recoder.Helpers {
         public static readonly string POS_BOTTOM = "Bottom";
         public static readonly string POS_FRONT = "Front";
         public static readonly string POS_BACK = "Back";
+        public static readonly string BASELINER = "BASELINER";
+        public static readonly string VOLLEYER = "VOLLEYER";
+        public static readonly string TEAM_A_BASELINER = "TEAM_A_BASELINER";
+        public static readonly string TEAM_A_VOLLEYER = "TEAM_A_VOLLEYER";
+        public static readonly string TEAM_B_BASELINER = "TEAM_B_BASELINER";
+        public static readonly string TEAM_B_VOLLEYER = "TEAM_B_VOLLEYER";
     }
     public static class Positon_Alias {
 
