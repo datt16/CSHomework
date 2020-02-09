@@ -7,7 +7,7 @@
     xmlns:c="using:Recoder.Controls"
     xmlns:c_result="using:Recoder.Controls.Result"
     mc:Ignorable="d"
-    Loaded="Page_Loaded">
+    Loaded="Page_Loaded"  MinWidth="900" MinHeight="720">
     
     
     <Grid x:Name="Main" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
