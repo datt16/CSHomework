@@ -14,9 +14,10 @@ namespace Recoder.Helpers {
         List<Game> Games = new List<Game>();
         List<Point> Points = new List<Point>();
         Point point = new Point();
+
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
-        public string Server = TEAM_A, ReServer = TEAM_B;
-        public string Side_A = SIDE_LEFT, Side_B = SIDE_RIGHT;
+        public static string Server = TEAM_A, ReServer = TEAM_B;
+        public static string Side_A = SIDE_LEFT, Side_B = SIDE_RIGHT;
         public Game GameCache;
 
         public void Init_Match() {
@@ -119,7 +120,9 @@ namespace Recoder.Helpers {
                 Server = Server
             };
             ChangeServer();
-            ChangeSides();
+            if (Game_Index % 2 == 1) {
+                ChangeSides();
+            }
             Games.Add(gm);
             Game_Index++;
             if (PointA > PointB) GCountA++;

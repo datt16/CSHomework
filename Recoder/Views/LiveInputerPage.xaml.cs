@@ -75,14 +75,14 @@ namespace Recoder.Views
 
         private void GetServer(object sender, System.EventArgs e) {
             server = MatchHelper.GetDialogData(sender).ToString();
-            match.Server = server;
+            Match.Server = server;
             if (server == TEAM_A) {
-                match.ReServer = TEAM_B;
+                Match.ReServer = TEAM_B;
             }
             else if (server == TEAM_B) {
-                match.ReServer = TEAM_A;
+                Match.ReServer = TEAM_A;
             }
-            MatchHelper.Update_Cards_IsServe(match.Server, match.Point_index);
+            MatchHelper.Update_Cards_IsServe(Match.Server, match.Point_index);
         }
 
         private void Init_Before_Serve() {
@@ -92,7 +92,7 @@ namespace Recoder.Views
             FaultButton_text.Text = "フォールト";
             RallyCountText.Text = "0";
             RallyCountDown.IsEnabled = false;
-            MatchHelper.Update_Cards_IsServe(match.Server, match.Point_index);
+            MatchHelper.Update_Cards_IsServe(Match.Server, match.Point_index);
         }
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
@@ -123,23 +123,12 @@ namespace Recoder.Views
             if (AddTag) {
                 if(FaultCount == 0) {
                     tags.Add(baseTag.Fault);
-                    // TextBlock tag = helper.tagText;
-                    // tag.Text = "フォールト";
-                    // Commandbar_Content.Children.Add(tag);
                     FaultCount++;
                 }
                 else if(FaultCount == 1) {
                     tags.RemoveAt(0);
                     tags.Add(baseTag.WFault);                    
-                    AddPoint(match.ReServer, tags);
-                    //Commandbar_Content.Children.Remove(Commandbar_Content.Children.Last());
-                    //TextBlock tag = helper.tagText;
-                    //tag.Text = "ダブルフォールト";
-                    //Commandbar_Content.Children.Add(tag);
-                    //IsFault.IsEnabled = false;
-                    //await Task.Delay(1500);
-                    //Commandbar_Content.Children.Remove(Commandbar_Content.Children.Last());
-                    // IsFault.IsEnabled = true;
+                    AddPoint(Match.ReServer, tags);
                     FaultCount = 0;
                 }
             }
@@ -149,7 +138,7 @@ namespace Recoder.Views
                 }
                 else if (FaultCount == 1) {
                     tags.Add(baseTag.WFault);
-                    AddPoint(match.ReServer, tags);
+                    AddPoint(Match.ReServer, tags);
                 }
             }
         }
@@ -172,7 +161,7 @@ namespace Recoder.Views
 
         private void IsAce_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             tags.Add(baseTag.ServiceAce);
-            AddPoint(match.Server, tags);
+            AddPoint(Match.Server, tags);
         }
 
         private void IsFault_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
