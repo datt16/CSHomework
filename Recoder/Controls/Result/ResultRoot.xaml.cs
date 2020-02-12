@@ -38,21 +38,13 @@ namespace Recoder.Controls.Result {
 
         [Obsolete]
         public void AddCount(Core.Models.Point point, int count) {
+            if (count == 0) { ClearAll(); InitRoot(); return; }
             PointControl ptControl = new PointControl();
             ptControl.SetChip(point, PointsPanel, count);
 
             HistoryViewer.UpdateLayout();
             // TODO: [CS0618] 書き方が旧型式
             HistoryViewer.ScrollToHorizontalOffset(HistoryViewer.ScrollableWidth);
-
-            //var period = TimeSpan.FromMilliseconds(10);
-            //Windows.System.Threading.ThreadPoolTimer.CreateTimer(async (source) =>
-            //{
-            //    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            //    {
-            //        var Succes = HistoryViewer.ChangeView(null, 10.0F, 1.0F, false);
-            //    });
-            //}, period);
 
             if (point.Getter == "A") AScore.Text = count.ToString();
             else if (point.Getter == "B") BScore.Text = count.ToString();
@@ -76,7 +68,6 @@ namespace Recoder.Controls.Result {
     }
 
     public class PointControl {
-
         public (int,int) AddChip_From_Game(Game game, FrameworkElement e) {
             ControlHelper helper = new ControlHelper();
             var set = e as StackPanel;

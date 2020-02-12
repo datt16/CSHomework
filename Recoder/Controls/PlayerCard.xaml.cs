@@ -26,6 +26,9 @@ namespace Recoder.Controls {
 
         private readonly SolidColorBrush HighLight = new SolidColorBrush(ColorHelper.FromArgb(255, 30, 90, 255));
         private readonly SolidColorBrush BaseColor = new SolidColorBrush(ColorHelper.FromArgb(255, 25, 25, 26));
+        private readonly SolidColorBrush ServerColor = new SolidColorBrush(ColorHelper.FromArgb(40, 30, 90, 255));
+        private readonly SolidColorBrush ReServerColor = new SolidColorBrush(ColorHelper.FromArgb(40, 255, 45, 0));
+
 
         public PlayerCard() {
             BallCount = 0;
@@ -34,18 +37,23 @@ namespace Recoder.Controls {
             Init(false, false);
         }
         public void Init(bool Serve, bool ReServe) {
+            All_Invisibled();
+            BallCount = 0;
             IsServe_on_card = Serve;
             IsReServe_on_card = ReServe;
             if (IsServe_on_card) { // サーブ時:サーブ用パネルを表示、1球目のハイライトを表示
+                MainBackground.Background = ServerColor;
                 PanelServe.Visibility = Visibility.Visible; PanelServeText.Visibility = Visibility.Visible;
-                BallCount = 2;
-                PanelBall.Visibility = Visibility.Visible;
-                Ball1.Stroke = HighLight; // HighLightクラス : DogerBlueの色(ちょっと濃い青)
+                //BallCount = 2;
+                //PanelBall.Visibility = Visibility.Visible;
+                //Ball1.Stroke = HighLight; // HighLightクラス : DogerBlueの色(ちょっと濃い青)
             }
             else if (IsReServe_on_card) {
+                MainBackground.Background = ReServerColor;
                 PanelReServe.Visibility = Visibility.Visible; PanelReServeText.Visibility = Visibility.Visible;
             }
             else {
+                MainBackground.Background = BaseColor;
                 PanelServe.Visibility = Visibility.Collapsed; PanelServeText.Visibility = Visibility.Collapsed;
                 PanelReServe.Visibility = Visibility.Collapsed; PanelReServeText.Visibility = Visibility.Collapsed;
             }

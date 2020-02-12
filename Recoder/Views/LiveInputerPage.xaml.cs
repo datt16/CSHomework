@@ -105,6 +105,7 @@ namespace Recoder.Views
             OnPropertyChanged(propertyName);
         }
 
+        [Obsolete]
         private void AddPoint(string team, List<Tag> tags) {
             Undo_Button.IsEnabled = true;
             if (match.Add_Point(team, tags, RallyCount) == "EndGame") {
@@ -119,11 +120,13 @@ namespace Recoder.Views
             Init_Before_Serve();
         }
 
+        [Obsolete]
         private void Fault(bool AddTag = true) {
             if (AddTag) {
                 if(FaultCount == 0) {
                     tags.Add(baseTag.Fault);
                     FaultCount++;
+                    MatchHelper.Cards[MatchHelper.ServerKey].Fault();
                 }
                 else if(FaultCount == 1) {
                     tags.RemoveAt(0);
@@ -159,11 +162,13 @@ namespace Recoder.Views
             Record.Hide();
         }
 
+        [Obsolete]
         private void IsAce_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             tags.Add(baseTag.ServiceAce);
             AddPoint(Match.Server, tags);
         }
 
+        [Obsolete]
         private void IsFault_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             if (FaultCount == 0) {
                 Fault();
@@ -175,6 +180,7 @@ namespace Recoder.Views
             }
         }
 
+        [Obsolete]
         private void IsFFault_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
             tags.Add(baseTag.FootFault);
             if (FaultCount == 0) {

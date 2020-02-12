@@ -20,6 +20,7 @@ namespace Recoder.Helpers {
     public class MatchHelper {
 
         public static Dictionary<string, PlayerCard> Cards = new Dictionary<string, PlayerCard>();
+        public static string ServerKey = "";
         public TextBlock tagText = new TextBlock()
         {
             Text = "",
@@ -238,7 +239,7 @@ namespace Recoder.Helpers {
             R_SearchIndex.Append("_");
             R_SearchIndex.Append(re_server);
             // ここまででキーは完成(S_SearchIndex, R_SearchIndex)
-
+            ServerKey = S_SearchIndex.ToString();
             // ここからそれぞれのカードの設定を指定
             // 一旦すべてを基本の形に戻して...
             foreach(KeyValuePair<string,PlayerCard> c in Cards) {

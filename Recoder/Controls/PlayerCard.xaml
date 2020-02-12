@@ -24,7 +24,7 @@
         <TextBlock x:Name="PanelReServeText" Grid.Column="1" Grid.Row="0" Text="レシーバー" FontSize="10" FontWeight="Bold" Foreground="White" VerticalAlignment="center" HorizontalAlignment="center"></TextBlock>
         <Grid Grid.Row="1" Grid.ColumnSpan="10">
             <Rectangle Fill="#FF252526"/>
-            <Grid Background="{ThemeResource SystemAltMediumLowColor}">
+            <Grid x:Name="MainBackground" Background="{ThemeResource SystemAltMediumLowColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="16*"></RowDefinition>
                     <RowDefinition Height="5*"></RowDefinition>
