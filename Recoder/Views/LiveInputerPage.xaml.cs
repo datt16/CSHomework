@@ -115,8 +115,14 @@ namespace Recoder.Views
             if (team == "A") cnt = match.PointA;
             else if (team == "B") cnt = match.PointB;
             CountResult.AddCount(new Point() { Getter = team, Tags = tags }, cnt);
-            Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
-            GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB);
+            if (!Match.IsFinal) {
+                Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB);
+                GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB);
+            }
+            else if(Match.IsFinal) {
+                Cnt.Text = helper.GenerateCountText(match.PointA, match.PointB, TYPE_ST_FINAL);
+                GCnt.Text = helper.GenerateCountText(match.GCountA, match.GCountB, TYPE_ST_FINAL);
+            }
             Init_Before_Serve();
         }
 
@@ -242,6 +248,7 @@ namespace Recoder.Views
             if (GameObject != null) {
                 // GameObjectをmatch.dataに代入する処理
                 match.data = GameObject;
+                match.GamesCount = GameObject.GamesCount;
                 GameObject.Title = "無題";
                 ShowInfo.Text = GameObject.Title;
                 // match.SettingMatch(GameObject);
@@ -279,6 +286,13 @@ namespace Recoder.Views
             if (RallyCount > 0) {
                 RallyCountDown.IsEnabled = true;
             }
+        }
+
+        private void AllButton_To_NotEnabled() {
+            IsFault.IsEnabled = false;
+            IsServiceAce.IsEnabled = false;
+            MoreServiceOptions.IsEnabled = false;
+            AddRecordButton.IsEnabled = false;
         }
         
     }

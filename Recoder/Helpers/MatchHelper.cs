@@ -68,10 +68,10 @@ namespace Recoder.Helpers {
                 }
             }
             else if (type == TYPE_ST_FINAL) {
-                if (CountA > CountB && CountA >= 6) {
+                if (CountA > CountB && CountA >= 7) {
                     return "Adv - " + CountB.ToString();
                 }
-                else if (CountB > CountA && CountB >= 6) {
+                else if (CountB > CountA && CountB >= 7) {
                     return CountA.ToString() + " - Adv";
                 }
             }
