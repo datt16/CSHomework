@@ -104,7 +104,7 @@ namespace Recoder.Helpers {
             string NewPlayerName = player.Name;
 
             Init_Card(card, NewTeamName, NewPlayerName, IsServe);
-            Set_Card_Position(card, yPos, Side, xPos);
+            Set_CardPos(card, yPos, Side, xPos);
             Cards.Add(Key, card);
             return card;
         }
@@ -127,7 +127,7 @@ namespace Recoder.Helpers {
         /// <summary>
         /// カードのポジション設定
         /// </summary>
-        public static void Set_Card_Position(PlayerCard Card, string IsTop, string IsLeft, string IsFront) {
+        public static void Set_CardPos(PlayerCard Card, string IsTop, string IsLeft, string IsFront) {
             int row = 0;
             int col = 0;
             Thickness Margin = new Thickness(0, 0, 0, 0);
@@ -240,8 +240,6 @@ namespace Recoder.Helpers {
             // ここまででキーは完成(S_SearchIndex, R_SearchIndex)
 
             // ここからそれぞれのカードの設定を指定
-            Debug.WriteLine($"{CountIndex}ポイント目");
-            Debug.WriteLine($"Server = {S_SearchIndex}\nReServer = {R_SearchIndex}");
             // 一旦すべてを基本の形に戻して...
             foreach(KeyValuePair<string,PlayerCard> c in Cards) {
                 c.Value.Init(false, false);
@@ -252,23 +250,237 @@ namespace Recoder.Helpers {
 
             // カードの位置を確定
             foreach (KeyValuePair<string, PlayerCard> c in Cards) {
-                if (c.Value.IsServe_on_card) {
-                    Debug.WriteLine($"サーバーは{c.Key}です");
 
-                }
-                else if (c.Value.IsReServe_on_card) {
-                    Debug.WriteLine($"レシーバーは{c.Key}です");
-                }
+                Set_CardPos_FromKey(c.Value, c.Key.ToString(), CountIndex);
             }
             // すべてのカードの更新完了!はもうすこししてから
         }
 
-        // PlayerCard Card, string IsTop, string IsLeft, string IsFront
-        private void GetCardPos(PlayerCard card, Match match) {
-            string Istop = POS_TOP; // 画面上で上かどうか
+         static void Set_CardPos_FromKey(PlayerCard card, string key, int countIndex) {
             string IsLeft = SIDE_LEFT; // 画面上のサイドの位置
             string IsFront = POS_FRONT; // 前にいるか後ろにいるか
-            
+            string IsTop = POS_TOP; // 画面上で上かどうか
+
+            if (key == TEAM_A_BASELINER) {
+                IsLeft = Match.Side_A;
+                IsFront = POS_BACK;
+                // もしサーバーなら、1ptごとに入れ変わり
+                if (card.IsServe_on_card) {
+                    // 右側のサイドなら、1st->上, 2nd->下...
+                    if(IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                }
+                else if(Match.Server == TEAM_A) {
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                }
+                // レシーバーなら上下は固定
+                else {
+                    if (IsLeft == SIDE_RIGHT) {
+                        IsTop = POS_TOP;   
+                    }
+                    else {
+                        IsTop = POS_BOTTOM;
+                    }
+                }
+            }
+            else if(key == TEAM_A_VOLLEYER) {
+                IsLeft = Match.Side_A;
+                IsFront = POS_FRONT; // 基本前にいる(前衛だし)
+                if (card.IsServe_on_card || card.IsReServe_on_card) {
+                    IsFront = POS_BACK; // サーバーかレシーバーだったら後ろに行く
+                }
+
+                if (card.IsServe_on_card) {
+                    // 右側のサイドなら、1st->上, 2nd->下...
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                }
+                else if(Match.Server == TEAM_A) {
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                }
+                // レシーバーなら上下は固定
+                else {
+                    if (IsLeft == SIDE_RIGHT) {
+                        IsTop = POS_BOTTOM;
+                    }
+                    else {
+                        IsTop = POS_TOP;
+                    }
+                }
+
+            }
+            else if (key == TEAM_B_BASELINER) {
+                IsLeft = Match.Side_B;
+                IsFront = POS_BACK;
+                // もしサーブするチームがBなら、1ptごとに入れ変わり
+                if (card.IsServe_on_card) {
+                    // 右側のサイドなら、1st->上, 2nd->下...
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                }
+                else if (Match.Server == TEAM_B) {
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                }
+                // レシーバーなら上下は固定
+                else {
+                    if (IsLeft == SIDE_RIGHT) {
+                        IsTop = POS_TOP;
+                    }
+                    else {
+                        IsTop = POS_BOTTOM;
+                    }
+                }
+            }
+            else if (key == TEAM_B_VOLLEYER) {
+                IsLeft = Match.Side_B;
+                IsFront = POS_FRONT;
+                if (card.IsServe_on_card || card.IsReServe_on_card) {
+                    IsFront = POS_BACK; // サーバーかレシーバーだったら後ろに行く
+                }
+                if (card.IsServe_on_card) {
+                    // 右側のサイドなら、1st->上, 2nd->下...
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                }
+                else if (Match.Server == TEAM_B) {
+                    if (IsLeft == SIDE_RIGHT) {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_BOTTOM;
+                        }
+                        else {
+                            IsTop = POS_TOP;
+                        }
+                    }
+                    // 左側のサイドなら、1st->下, 2nd->上...
+                    else {
+                        if (countIndex % 2 == 1) {
+                            IsTop = POS_TOP;
+                        }
+                        else {
+                            IsTop = POS_BOTTOM;
+                        }
+                    }
+                }
+                // レシーバーなら上下は固定
+                else {
+                    if (IsLeft == SIDE_RIGHT) {
+                        IsTop = POS_BOTTOM;
+                    }
+                    else {
+                        IsTop = POS_TOP;
+                    }
+                }
+            }
+
+            Set_CardPos(card, IsTop, IsLeft, IsFront);
         }
     }
 
