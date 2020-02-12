@@ -22,6 +22,7 @@ namespace Recoder.Views
             matches.Add(
                 new MatchData
                 {
+                    Title = "TestMatch!!",
                     TeamAName = "TeamA",
                     TeamBName = "TeamB",
                     GamesCount = 5,
@@ -31,6 +32,7 @@ namespace Recoder.Views
             matches.Add(
                 new MatchData
                 {
+                    Title="Mac VS Surfece Series",
                     TeamAName = "Apple",
                     TeamBName = "Microsoft",
                     GamesCount = 7,

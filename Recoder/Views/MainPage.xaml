@@ -33,31 +33,31 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="試合の作成" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                    <Button x:Name="MatchMake_Button" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
-                        <Button.Content>
-                            <StackPanel>
-                                <Viewbox Margin="100,100,100, 50">
-                                    <SymbolIcon Symbol="Attach"/>
-                                </Viewbox>
-                                <TextBlock Text="試合を作成" HorizontalAlignment="Right" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,10,5"/>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
+                        <TextBlock Text="試合の作成" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
+                        <Button x:Name="MatchMake_Button" Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                            <Button.Content>
+                                <StackPanel>
+                                    <Viewbox Margin="100,100,100, 50">
+                                        <SymbolIcon Symbol="Forward"/>
+                                    </Viewbox>
+                                    <TextBlock Text="試合を作成" HorizontalAlignment="Right" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,10,5"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
-                    <TextBlock Text="過去の試合" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                    <Button Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
-                        <Button.Content>
-                            <StackPanel>
-                                <Viewbox Margin="100,100,100, 50">
-                                    <SymbolIcon Symbol="AllApps"/>
-                                </Viewbox>
-                                <TextBlock Text="ライブラリに移動" HorizontalAlignment="Right" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,10,5"/>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
+                        <TextBlock Text="過去の試合" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
+                        <Button Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                            <Button.Content>
+                                <StackPanel>
+                                    <Viewbox Margin="100,100,100, 50">
+                                        <SymbolIcon Symbol="AllApps"/>
+                                    </Viewbox>
+                                    <TextBlock Text="ライブラリに移動" HorizontalAlignment="Right" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,10,5"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
                         <TextBlock Text="最近使ったファイル" Style="{StaticResource TitleTextBlockStyle}" Margin="10,5,0,0"></TextBlock>
                         <ListView x:Name="MatchHistoryView" ItemsSource="{x:Bind matches}">
@@ -91,7 +91,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
                         <TextBlock Text="確認" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -101,7 +101,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -114,7 +114,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
                         <TextBlock Text="開発者向け" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -124,7 +124,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -139,5 +139,5 @@
             </Grid>
         </StackPanel>
     </Grid>
-        
+
 </Page>

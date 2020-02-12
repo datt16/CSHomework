@@ -73,10 +73,10 @@ namespace Recoder.Helpers {
         }
 
         public void ChangeSides() {
-            if (MatchHelper.A_Side == SIDE_LEFT) MatchHelper.A_Side = SIDE_RIGHT;
-            else MatchHelper.A_Side = SIDE_LEFT;
-            if (MatchHelper.B_Side == SIDE_LEFT) MatchHelper.B_Side = SIDE_RIGHT;
-            else MatchHelper.B_Side = SIDE_LEFT;
+            if (Side_A == SIDE_LEFT) Side_A = SIDE_RIGHT;
+            else Side_A = SIDE_LEFT;
+            if (Side_B == SIDE_LEFT) Side_B = SIDE_RIGHT;
+            else Side_B = SIDE_LEFT;
         }
 
         /// <summary>
@@ -119,6 +119,7 @@ namespace Recoder.Helpers {
                 Server = Server
             };
             ChangeServer();
+            ChangeSides();
             Games.Add(gm);
             Game_Index++;
             if (PointA > PointB) GCountA++;

@@ -28,6 +28,7 @@ namespace Recoder.Helpers {
         public static readonly string TEAM_B_BASELINER = "TEAM_B_BASELINER";
         public static readonly string TEAM_B_VOLLEYER = "TEAM_B_VOLLEYER";
     }
+
     public static class Positon_Alias {
 
         public static Card_Positon Left_Front_Top = new Card_Positon()

@@ -26,8 +26,6 @@ namespace Recoder.Helpers {
             Margin = new Thickness(5, 10, 10, 10),
             FontSize = 12
         };
-        public static string A_Side = SIDE_LEFT;
-        public static string B_Side = SIDE_RIGHT;
 
         /// <summary>
         /// カウントを表示するオブジェクト用のテキストを生成。
@@ -197,8 +195,11 @@ namespace Recoder.Helpers {
             Debug.WriteLine($"{res}");
         }
 
+
+        // カードを更新
         public static void Update_Cards_IsServe(string ServerTeam, int CountIndex) {
 
+            // ここからサーブ・レシーブ判定
             StringBuilder S_SearchIndex = new StringBuilder();
             S_SearchIndex.Append("TEAM_");
 
@@ -217,7 +218,7 @@ namespace Recoder.Helpers {
             if (CountIndex % 4 - 1 == -1) n = 3;
             else n = CountIndex % 4 - 1;
             server = a[n];
-
+            
             for (int i = 0; i < CountIndex-1; i++) {
                 if (re_server == BASELINER) {
                     re_server = VOLLEYER;
@@ -226,7 +227,9 @@ namespace Recoder.Helpers {
                     re_server = BASELINER;
                 }
             }
+            // ここまでサーブ・レシーブ判定
 
+            // ここからサーバー・レシーバーのキー(Dictionary)を指定するための文字列を生成
             S_SearchIndex.Append(ServerTeam);
             S_SearchIndex.Append("_");
             S_SearchIndex.Append(server);
@@ -234,31 +237,38 @@ namespace Recoder.Helpers {
             R_SearchIndex.Append(ReServerTeam);
             R_SearchIndex.Append("_");
             R_SearchIndex.Append(re_server);
+            // ここまででキーは完成(S_SearchIndex, R_SearchIndex)
 
+            // ここからそれぞれのカードの設定を指定
             Debug.WriteLine($"{CountIndex}ポイント目");
             Debug.WriteLine($"Server = {S_SearchIndex}\nReServer = {R_SearchIndex}");
+            // 一旦すべてを基本の形に戻して...
             foreach(KeyValuePair<string,PlayerCard> c in Cards) {
                 c.Value.Init(false, false);
             }
-            // Server
+            // サーバー・レシーバーのカードだけ、もう一度(引数ありで)初期化
             Cards[S_SearchIndex.ToString()].Init(true, false);
-            // ReServer
             Cards[R_SearchIndex.ToString()].Init(false, true);
-            // サーバーの位置 IsFront = BACK;
-            // {A_side}_{IsFront}_{IsTop}
-            // レシーバーの位置
-            // Aチームその他のプレーヤーの位置
-            // Bチームその他のプレーヤーの位置
 
+            // カードの位置を確定
             foreach (KeyValuePair<string, PlayerCard> c in Cards) {
                 if (c.Value.IsServe_on_card) {
-                    
+                    Debug.WriteLine($"サーバーは{c.Key}です");
+
                 }
                 else if (c.Value.IsReServe_on_card) {
-
+                    Debug.WriteLine($"レシーバーは{c.Key}です");
                 }
             }
+            // すべてのカードの更新完了!はもうすこししてから
+        }
 
+        // PlayerCard Card, string IsTop, string IsLeft, string IsFront
+        private void GetCardPos(PlayerCard card, Match match) {
+            string Istop = POS_TOP; // 画面上で上かどうか
+            string IsLeft = SIDE_LEFT; // 画面上のサイドの位置
+            string IsFront = POS_FRONT; // 前にいるか後ろにいるか
+            
         }
     }
 
