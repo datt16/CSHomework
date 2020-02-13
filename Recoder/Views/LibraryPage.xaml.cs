@@ -20,15 +20,26 @@ namespace Recoder.Views
 {
     public sealed partial class LibraryPage : Page, INotifyPropertyChanged
     {
-        private SampleOrder _selected;
+        //private SampleOrder _selected;
 
-        public SampleOrder Selected
-        {
+        //public SampleOrder Selected
+        //{
+        //    get { return _selected; }
+        //    set { Set(ref _selected, value); }
+        //}
+
+
+        private MatchData _selected;
+
+        public MatchData Selected {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+
+        // public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+
+        public ObservableCollection<MatchData> matches { get; private set; } = new ObservableCollection<MatchData>();
 
         public LibraryPage()
         {
@@ -38,18 +49,40 @@ namespace Recoder.Views
 
         private async void LibraryPage_Loaded(object sender, RoutedEventArgs e)
         {
-            SampleItems.Clear();
+            // SampleItems.Clear();
+            matches.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            // var data = await SampleDataService.GetMasterDetailDataAsync();
+            matches.Add(
+                new MatchData
+                {
+                    Title = "TestMatch!!",
+                    TeamAName = "TeamA",
+                    TeamBName = "TeamB",
+                    GamesCount = 5,
+                    TeamA_GamePoint = 1,
+                    TeamB_GamePoint = 3,
+                });
+            matches.Add(
+                new MatchData
+                {
+                    Title = "Mac VS Surfece Series",
+                    TeamAName = "Apple",
+                    TeamBName = "Microsoft",
+                    GamesCount = 7,
+                    TeamA_GamePoint = 4,
+                    TeamB_GamePoint = 3,
+                });
 
-            foreach (var item in data)
-            {
-                SampleItems.Add(item);
-            }
+            //foreach (var item in data)
+            //{
+            //    SampleItems.Add(item);
+            //}
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.FirstOrDefault();
+                // Selected = SampleItems.FirstOrDefault();
+                Selected = matches.FirstOrDefault();
             }
         }
 

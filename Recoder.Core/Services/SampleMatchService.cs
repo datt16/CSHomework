@@ -8,11 +8,6 @@ using Windows.Storage;
 namespace Recoder.Core.Services {
     class SampleMatchService {
         private IEnumerable<MatchData> _allMatchDatas;
-        //private IEnumerable<MatchData> AllMatches() {
-        //    var Matches = AllMatches();
-        //    return Matches.SelectMany()
-        //}
-
 
         private static IEnumerable<MatchData> SampleMatch() {
             return new List<MatchData>()

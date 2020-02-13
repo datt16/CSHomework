@@ -119,7 +119,6 @@ namespace Recoder.Views
                 DataIO.JsonOutput(match.data);
                 Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 await SettingsStorageExtensions.SaveAsync<MatchData>(storageFolder, "test", match.data);
-                // Services.NavigationService.Navigate(typeof(MainDetailPage), null);
             }
             int cnt = 0;
             if (team == "A") cnt = match.PointA;

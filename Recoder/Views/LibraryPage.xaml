@@ -10,7 +10,7 @@
     xmlns:views="using:Recoder.Views"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:MatchData">
             <Grid Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -20,13 +20,13 @@
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     FontSize="32"
-                    Glyph="{x:Bind Symbol}" />
+                    Glyph="&#xE700;" />
                 <StackPanel
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Company}" Style="{ThemeResource ListTitleStyle}" />
-                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}" />
+                    <TextBlock Text="{x:Bind Title}" Style="{ThemeResource ListTitleStyle}" />
+                    <TextBlock Text="{x:Bind ShortDiscription}" Style="{StaticResource ListSubTitleStyle}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -67,7 +67,7 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
-            ItemsSource="{x:Bind SampleItems}"
+            ItemsSource="{x:Bind matches}"
             ItemTemplate="{StaticResource ItemTemplate}"
             MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
