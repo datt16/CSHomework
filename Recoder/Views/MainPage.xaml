@@ -34,7 +34,7 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
                         <TextBlock Text="試合の作成" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button x:Name="MatchMake_Button" Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button x:Name="GoToMatchMake" Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" Click="GoToMatchMake_Click">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -47,7 +47,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
                         <TextBlock Text="過去の試合" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button x:Name="GoToLibrary" Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" Click="GoToLibrary_Click">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -91,7 +91,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
                         <TextBlock Text="確認" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" IsEnabled="False">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -101,7 +101,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" IsEnabled="False">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -114,7 +114,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
                         <TextBlock Text="開発者向け" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,0,0"/>
-                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" IsEnabled="False">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">
@@ -124,7 +124,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10">
+                        <Button Style="{ThemeResource ButtonRevealStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" IsEnabled="False">
                             <Button.Content>
                                 <StackPanel>
                                     <Viewbox Margin="100,100,100, 50">

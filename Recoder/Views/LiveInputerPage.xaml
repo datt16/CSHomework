@@ -14,10 +14,10 @@
         <CommandBar Style="{StaticResource CommandBarWithoutRevealStyle}" OverflowButtonVisibility="Collapsed">
             <CommandBar.Content>
                 <StackPanel Orientation="Horizontal" x:Name="Commandbar_Content">
-                    <TextBlock FontSize="12" Text="第一ゲーム 第二ポイント" Margin="5,10,10,10"/>
+                    <!--<TextBlock FontSize="12" Text="第一ゲーム 第二ポイント" Margin="5,10,10,10"/>-->
                 </StackPanel>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>
+            <!--<AppBarButton Icon="Accept" Label="Hello" Style="{StaticResource CommandBarFlyoutAppBarButtonStyle}"/>-->
         </CommandBar>
         <TextBlock x:Name="ShowInfo" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
         <Grid Margin="21,0,-21,0">
@@ -427,6 +427,7 @@
                             <Button 
                                 Grid.Row="1" Grid.Column="1"
                                 Margin="5,0,0,5"
+                                IsEnabled="False"
                                 Style="{StaticResource ButtonRevealStyle}"
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Stretch">

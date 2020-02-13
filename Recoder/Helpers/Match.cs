@@ -12,7 +12,7 @@ namespace Recoder.Helpers {
     using static Control_Alias;
     public class Match {
         public MatchData data = new MatchData();
-        List<Game> Games = new List<Game>();
+        public List<Game> Games = new List<Game>();
         List<Point> Points = new List<Point>();
         Point point = new Point();
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
@@ -122,6 +122,13 @@ namespace Recoder.Helpers {
             if (Game_Index == GamesCount)   {
                 // GoFinalGame;
                 IsFinal = true;
+            }
+
+            if (GamesCount == 3) {
+                if (GCountA == 1 || GCountB == 1) {
+                    IsMatchEnd = true;
+                    return;
+                }
             }
 
             if (GCountA == GamesCount / 2 + 1 || GCountB == GamesCount / 2 + 1) {

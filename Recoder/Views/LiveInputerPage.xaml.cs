@@ -35,6 +35,10 @@ namespace Recoder.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
+            match = new Match();
+            Match.IsFinal = false;
+            Match.IsMatchEnd = false;
+            MatchHelper.Cards = new Dictionary<string, PlayerCard>();
             GameObject = e.Parameter as MatchData;
         }
 
@@ -117,7 +121,13 @@ namespace Recoder.Views
             else if (flag == "MatchEnd") {
                 AllButton_To_NotEnabled();
                 Cnt.Text = "試合終了";
+                GCnt.Text = "";
                 DataIO.JsonOutput(match.data);
+                match.data.Games = match.Games;
+                match.data.TeamA_GamePoint = match.GCountA;
+                match.data.TeamB_GamePoint = match.GCountB;
+                match.data.TeamAPlayers = GameObject.TeamAPlayers;
+                match.data.TeamBPlayers = GameObject.TeamBPlayers;
                 MatchDataManager.AddMatch(match.data);
                 await new MessageDialog($"{match.data.TeamAName} : {match.GCountA} - {match.GCountB} : {match.data.TeamBName}", $"試合終了").ShowAsync();
                 return;
@@ -304,6 +314,7 @@ namespace Recoder.Views
             IsServiceAce.IsEnabled = false;
             MoreServiceOptions.IsEnabled = false;
             AddRecordButton.IsEnabled = false;
+            Undo_Button.IsEnabled = false;
         }
         
     }

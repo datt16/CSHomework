@@ -5,8 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="1300"
+    d:DesignWidth="900"
+    Loaded="UserControl_Loaded"
+    DataContextChanged="UserControl_DataContextChanged">
     <ScrollViewer
         Name="ForegroundElement"
         Padding="{StaticResource DetailPageMargin}"
@@ -15,55 +17,155 @@
         VerticalScrollMode="Enabled">
         <StackPanel HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <FontIcon
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="48"
-                    Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}" />
                 <TextBlock
-                    Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
+                    Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
-                <TextBlock Style="{StaticResource DetailSubTitleStyle}" FontWeight="Black" Text="Status" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" />
+                <!--<TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" FontSize="10" Text="作成日 : 2020-02-14 00:51" />-->
+                <TextBlock Margin="{StaticResource SmallTopMargin}" Style="{StaticResource DetailSubTitleStyle}" Text="概要" />
+                <!--<TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem., Mode=OneWay}" />-->
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{x:Bind MasterMenuItem.TeamAName, Mode=OneWay}" Margin="24,20" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock FontSize="100" FontWeight="Bold" Text="{x:Bind MasterMenuItem.TeamA_GamePoint, Mode=OneWay}" />
+                    <TextBlock FontSize="100" Margin="10,0" Text="-" />
+                    <TextBlock FontSize="100" FontWeight="Bold" Text="{x:Bind MasterMenuItem.TeamB_GamePoint, Mode=OneWay}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.TeamBName, Mode=OneWay}" Margin="24,20" FontSize="16" VerticalAlignment="Center" />
+                </StackPanel>
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Order date" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" />
-                <TextBlock
+                    Text="メンバー" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="5">
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.TeamAName, Mode=OneWay}" Margin="0,5"/>
+                        <StackPanel Orientation="Horizontal" Background="{StaticResource SystemAccentColorLight2}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Background="{ThemeResource SystemAccentColor}">
+                                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="前衛" Margin="10"/>
+                                </Grid>
+                                <Grid Grid.Column="1"  HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="A_Player0_text" Grid.Column="1" Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="{x:Bind playerNameList[1], Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Background="{StaticResource SystemAccentColorLight1}" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Background="{ThemeResource SystemAccentColor}">
+                                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="後衛" Margin="10"/>
+                                </Grid>
+                                <Grid Grid.Column="1"  HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="A_Player1_text" Grid.Column="1" Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="{x:Bind playerNameList[0], Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.TeamBName, Mode=OneWay}" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Background="{StaticResource SystemAccentColorDark1}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Background="{ThemeResource SystemAccentColor}">
+                                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="前衛" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1"  HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="B_Player0_text" Grid.Column="1" Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="{x:Bind playerNameList[3], Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+                            </Grid>
+                        </Grid>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="{StaticResource SystemAccentColorDark2}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Background="{ThemeResource SystemAccentColor}">
+                                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="後衛" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1"  HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="B_Player1_text" Grid.Column="1" Style="{StaticResource DetailBodyBaseMediumStyle}" Foreground="White" Text="{x:Bind playerNameList[2], Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+                            </Grid>
+                        </Grid>
+
+                    </StackPanel>
+                </StackPanel>
+                </Grid>
+
+                <!--<TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Company" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" />
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Ship to" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.ShipTo, Mode=OneWay}" />
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Order total" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" />
+                    Text="統計" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="12" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="10" FontSize="70"/>
+                                    <TextBlock Text="%" FontSize="35" VerticalAlignment="Bottom" Margin="0,8"/>
+                                </StackPanel>
+                                <TextBlock Text="1stサーブ成功率" Style="{StaticResource DetailBodyBaseMediumStyle}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Margin="12" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="25" FontSize="70" />
+                                    <TextBlock Text="%" FontSize="35" VerticalAlignment="Bottom" Margin="0,8"/>
+                                </StackPanel>
+                                <TextBlock Text="ダブルフォールト" Style="{StaticResource DetailBodyBaseMediumStyle}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="12,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="12" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="10" FontSize="70"/>
+                                    <TextBlock Text="%" FontSize="35" VerticalAlignment="Bottom" Margin="0,8"/>
+                                </StackPanel>
+                                <TextBlock Text="1stサーブ成功率" Style="{StaticResource DetailBodyBaseMediumStyle}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Margin="12" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="25" FontSize="70" />
+                                    <TextBlock Text="%" FontSize="35" VerticalAlignment="Bottom" Margin="0,8"/>
+                                </StackPanel>
+                                <TextBlock Text="ダブルフォールト" Style="{StaticResource DetailBodyBaseMediumStyle}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>-->
 
                 <TextBlock
-                    Margin="{StaticResource MediumTopMargin}"
-                    Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Note 1" />
-                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
-
-                <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Note 2" />
-                <TextBlock
-                    Margin="{StaticResource MediumBottomMargin}"
-                    Style="{StaticResource DetailBodyStyle}"
-                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                    Text="ポイントの詳細" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Coming Soon"/>
+                <TextBlock Width="1000"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

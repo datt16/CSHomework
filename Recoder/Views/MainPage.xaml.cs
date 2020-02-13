@@ -47,5 +47,13 @@ namespace Recoder.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void GoToMatchMake_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
+            NavigationService.Navigate(typeof(InputerPage), null);
+        }
+
+        private void GoToLibrary_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) {
+            NavigationService.Navigate(typeof(LibraryPage), null);
+        }
     }
 }
