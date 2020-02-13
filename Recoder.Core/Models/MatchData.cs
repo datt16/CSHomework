@@ -26,6 +26,11 @@ namespace Recoder.Core.Models {
 
         public List<Player> TeamBPlayers { get; set; }
 
-        public string ShortDiscription => $"{TeamAName} vs {TeamBName} : {TeamA_GamePoint} - {TeamB_GamePoint}";
+        public string ShortDiscription { get; set; }
+
+        public void SetDescription() {
+            ShortDiscription = $"{TeamAName} vs {TeamBName} : {TeamA_GamePoint} - {TeamB_GamePoint}";
+        }
     }
+
 }

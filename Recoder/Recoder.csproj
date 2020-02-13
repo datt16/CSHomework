@@ -184,6 +184,7 @@
     <Compile Include="Helpers\Structs.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
+    <Compile Include="Services\MatchDataManager.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Views\InputerPage.xaml.cs">
       <DependentUpon>InputerPage.xaml</DependentUpon>

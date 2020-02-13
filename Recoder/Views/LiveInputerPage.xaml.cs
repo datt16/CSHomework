@@ -17,6 +17,7 @@ using Recoder.Core.Services;
 using Recoder.Core.Models;
 using Recoder.Helpers;
 using Recoder.Controls;
+using Recoder.Services;
 
 namespace Recoder.Views
 {
@@ -117,8 +118,9 @@ namespace Recoder.Views
                 AllButton_To_NotEnabled();
                 Cnt.Text = "試合終了";
                 DataIO.JsonOutput(match.data);
-                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-                await SettingsStorageExtensions.SaveAsync<MatchData>(storageFolder, "test", match.data);
+                MatchDataManager.AddMatch(match.data);
+                await new MessageDialog($"{match.data.TeamAName} : {match.GCountA} - {match.GCountB} : {match.data.TeamBName}", $"試合終了").ShowAsync();
+                return;
             }
             int cnt = 0;
             if (team == "A") cnt = match.PointA;

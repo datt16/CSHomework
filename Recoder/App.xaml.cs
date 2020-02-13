@@ -29,6 +29,10 @@ namespace Recoder
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
+                await MatchDataManager.DataLoadAsync();
+                if (MatchDataManager.Matches == null) {
+                    MatchDataManager.Set_Sample();
+                }
             }
         }
 

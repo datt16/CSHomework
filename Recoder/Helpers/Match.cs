@@ -75,7 +75,6 @@ namespace Recoder.Helpers {
                 else if (PointA == 4 || PointB == 4) {
                     End_Game();
                     if (IsMatchEnd) {
-                        // await new MessageDialog($"{data.TeamAName} : {GCountA} - {GCountB} : {data.TeamBName}", $"試合終了").ShowAsync();
                         return "MatchEnd";
                     }
                     return "EndGame";

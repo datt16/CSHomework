@@ -9,42 +9,22 @@ using Windows.UI.Xaml.Navigation;
 
 using Recoder.Helpers;
 using System.Diagnostics;
+using Recoder.Services;
 
 namespace Recoder.Views
 {
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
         Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-        private ObservableCollection<MatchData> _matches = new ObservableCollection<MatchData>();
 
-        public ObservableCollection<MatchData> matches {
-            get { return this._matches; }
-        }
+        public ObservableCollection<MatchData> matches { get; } = new ObservableCollection<MatchData>();
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
-            matches.Add(
-                new MatchData
-                {
-                    Title = "TestMatch!!",
-                    TeamAName = "TeamA",
-                    TeamBName = "TeamB",
-                    GamesCount = 5,
-                    TeamA_GamePoint = 1,
-                    TeamB_GamePoint = 3,
-                });
-            matches.Add(
-                new MatchData
-                {
-                    Title="Mac VS Surfece Series",
-                    TeamAName = "Apple",
-                    TeamBName = "Microsoft",
-                    GamesCount = 7,
-                    TeamA_GamePoint = 4,
-                    TeamB_GamePoint = 3,
-                });
-            MatchData testfile = await SettingsStorageExtensions.ReadAsync<MatchData>(storageFolder, "test");
-            matches.Add(testfile);
+            foreach(var item in MatchDataManager.Matches) {
+                item.SetDescription();
+                matches.Add(item);
+            }
         }
 
         public MainPage()
