@@ -66,6 +66,7 @@ namespace Recoder.Helpers {
                     if (PointA > PointB + 1 || PointB > PointA + 1) {
                         End_Game();
                         if (IsMatchEnd) {
+                            
                             return "MatchEnd";
                         }
                         return "EndGame";
@@ -74,6 +75,7 @@ namespace Recoder.Helpers {
                 else if (PointA == 4 || PointB == 4) {
                     End_Game();
                     if (IsMatchEnd) {
+                        // await new MessageDialog($"{data.TeamAName} : {GCountA} - {GCountB} : {data.TeamBName}", $"試合終了").ShowAsync();
                         return "MatchEnd";
                     }
                     return "EndGame";
@@ -122,9 +124,10 @@ namespace Recoder.Helpers {
                 // GoFinalGame;
                 IsFinal = true;
             }
-            else if (GCountA == GamesCount / 2 + 1 || GCountB == GamesCount / 2 + 1)  {
+
+            if (GCountA == GamesCount / 2 + 1 || GCountB == GamesCount / 2 + 1) {
                 // EndMatch;
-                await new MessageDialog($"{data.TeamAName} : {GCountA} - {GCountB} : {data.TeamBName}", $"試合終了").ShowAsync();
+                data.Games = this.Games;
                 IsMatchEnd = true;
                 return;
             }

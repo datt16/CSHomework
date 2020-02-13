@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+using Windows.UI.Xaml;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
 using Recoder.Controls.Result;
 using Recoder.Core.Services;
 using Recoder.Core.Models;
 using Recoder.Helpers;
-using Windows.UI.Xaml;
-using Windows.UI.Popups;
 using Recoder.Controls;
 
 namespace Recoder.Views
@@ -106,7 +107,7 @@ namespace Recoder.Views
         }
 
         [Obsolete]
-        private void AddPoint(string team, List<Tag> tags) {
+        private async void AddPoint(string team, List<Tag> tags) {
             Undo_Button.IsEnabled = true;
             string flag = match.Add_Point(team, tags, RallyCount);
             if (flag == "EndGame") {
@@ -114,6 +115,11 @@ namespace Recoder.Views
             }
             else if (flag == "MatchEnd") {
                 AllButton_To_NotEnabled();
+                Cnt.Text = "試合終了";
+                DataIO.JsonOutput(match.data);
+                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                await SettingsStorageExtensions.SaveAsync<MatchData>(storageFolder, "test", match.data);
+                // Services.NavigationService.Navigate(typeof(MainDetailPage), null);
             }
             int cnt = 0;
             if (team == "A") cnt = match.PointA;

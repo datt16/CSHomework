@@ -7,17 +7,21 @@ using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
+using Recoder.Helpers;
+using System.Diagnostics;
+
 namespace Recoder.Views
 {
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
+        Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
         private ObservableCollection<MatchData> _matches = new ObservableCollection<MatchData>();
 
         public ObservableCollection<MatchData> matches {
             get { return this._matches; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
             matches.Add(
                 new MatchData
@@ -39,6 +43,8 @@ namespace Recoder.Views
                     TeamA_GamePoint = 4,
                     TeamB_GamePoint = 3,
                 });
+            MatchData testfile = await SettingsStorageExtensions.ReadAsync<MatchData>(storageFolder, "test");
+            matches.Add(testfile);
         }
 
         public MainPage()
