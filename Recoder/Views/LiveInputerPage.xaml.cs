@@ -108,8 +108,12 @@ namespace Recoder.Views
         [Obsolete]
         private void AddPoint(string team, List<Tag> tags) {
             Undo_Button.IsEnabled = true;
-            if (match.Add_Point(team, tags, RallyCount) == "EndGame") {
+            string flag = match.Add_Point(team, tags, RallyCount);
+            if (flag == "EndGame") {
                 Undo_Button.IsEnabled = false;
+            }
+            else if (flag == "MatchEnd") {
+                AllButton_To_NotEnabled();
             }
             int cnt = 0;
             if (team == "A") cnt = match.PointA;

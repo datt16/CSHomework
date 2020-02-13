@@ -18,49 +18,13 @@ namespace Recoder.Helpers {
         public int Point_index = 1, PointA = 0, PointB = 0, Game_Index = 1, GamesCount = 3, GCountA = 0, GCountB = 0;
         public static string Server = TEAM_A, ReServer = TEAM_B;
         public static string Side_A = SIDE_LEFT, Side_B = SIDE_RIGHT;
-        public static bool IsFinal = false;
+        public static bool IsFinal = false, IsMatchEnd = false;
         public Game GameCache;
 
         public void Init_Match() {
             Games = new List<Game>();
             Points = new List<Point>();
             point = new Point();
-        }
-
-        public void Setup_Tester() {
-            data = new MatchData()
-            {
-                GamesCount = 3,
-                TeamAName = "TeamA",
-                TeamBName = "TeamB",
-                TeamAPlayers = new List<Player>(){
-                    new Player()
-                    {
-                        Name = "Matt",
-                        Pos = Player_Position.Volleyer
-                    },
-                    new Player()
-                    {
-                        Name = "Jack",
-                        Pos = Player_Position.Volleyer
-                    }
-                },
-                TeamBPlayers = new List<Player>(){
-                    new Player()
-                    {
-                        Name = "Yuuri",
-                        Pos = Player_Position.Volleyer
-                    },
-                    new Player()
-                    {
-                        Name = "Mary",
-                        Pos = Player_Position.Baseliner
-                    }
-                },
-            };
-            this.GamesCount = data.GamesCount;
-            Point_index = 1; Game_Index = 1;
-            Server = "A";
         }
 
         public void ChangeServer() {
@@ -101,11 +65,17 @@ namespace Recoder.Helpers {
                 if (Point_index > 6) {
                     if (PointA > PointB + 1 || PointB > PointA + 1) {
                         End_Game();
+                        if (IsMatchEnd) {
+                            return "MatchEnd";
+                        }
                         return "EndGame";
                     }
                 }
                 else if (PointA == 4 || PointB == 4) {
                     End_Game();
+                    if (IsMatchEnd) {
+                        return "MatchEnd";
+                    }
                     return "EndGame";
                 }
                 Point_index++;
@@ -114,11 +84,17 @@ namespace Recoder.Helpers {
                 if (Point_index > 12) {
                     if (PointA > PointB + 1 || PointB > PointA + 1) {
                         End_Game();
+                        if (IsMatchEnd) {
+                            return "MatchEnd";
+                        }
                         return "EndGame";
                     }
                 }
                 else if (PointA == 7 || PointB == 7) {
                     End_Game();
+                    if (IsMatchEnd) {
+                        return "MatchEnd";
+                    }
                     return "EndGame";
                 }
                 Point_index++;
@@ -149,6 +125,7 @@ namespace Recoder.Helpers {
             else if (GCountA == GamesCount / 2 + 1 || GCountB == GamesCount / 2 + 1)  {
                 // EndMatch;
                 await new MessageDialog($"{data.TeamAName} : {GCountA} - {GCountB} : {data.TeamBName}", $"試合終了").ShowAsync();
+                IsMatchEnd = true;
                 return;
             }
             int ptA = PointA, ptB = PointB;
