@@ -9,7 +9,7 @@
 
   <Identity
     Name="60F9C7A1-9560-46A3-8886-776E3F626E7D"
-    Publisher="CN=Osada Tomoya"
+    Publisher="CN=datt"
     Version="0.1.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="60F9C7A1-9560-46A3-8886-776E3F626E7D" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-using Windows.Storage;
-
 using Recoder.Core;
 using System.Diagnostics;
 
