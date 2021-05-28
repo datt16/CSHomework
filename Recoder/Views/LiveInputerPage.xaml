@@ -375,7 +375,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Margin="5,0,0,5">設定・操作</TextBlock>
-                            <Button 
+                            <Button
+                                IsEnabled="False"
                                 Grid.Row="1" Grid.Column="0"
                                 Margin="5,0,0,5"
                                 Style="{StaticResource ButtonRevealStyle}"
@@ -397,7 +398,8 @@
                                     </Flyout>
                                 </Button.Flyout>
                             </Button>
-                            <Button 
+                            <Button
+                                IsEnabled="False"
                                 Grid.Row="2" Grid.Column="0"
                                 Margin="5,0,0,5"
                                 Style="{StaticResource ButtonRevealStyle}"

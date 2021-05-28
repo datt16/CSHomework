@@ -129,7 +129,9 @@ namespace Recoder.Views
                 match.data.TeamAPlayers = GameObject.TeamAPlayers;
                 match.data.TeamBPlayers = GameObject.TeamBPlayers;
                 MatchDataManager.AddMatch(match.data);
+                await MatchDataManager.DataSaveAsync();
                 await new MessageDialog($"{match.data.TeamAName} : {match.GCountA} - {match.GCountB} : {match.data.TeamBName}", $"試合終了").ShowAsync();
+                NavigationService.Navigate(typeof(LibraryPage), null);
                 return;
             }
             int cnt = 0;
